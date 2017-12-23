@@ -1,0 +1,456 @@
+<!--
+	作者：宋超
+	时间：2016-09-22
+	描述：注册页
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+
+		body{
+			background: url(../../img/zcym.jpg);width:100%;height:100%;background-size:cover;
+			overflow:hidden;
+		}
+		.inputdiv{
+			width: 100%;
+			height: 50px;
+			
+		}
+		.inputdiv input{
+			border-radius: 5px;
+			height: 50px;
+			background-color: white!important;
+			border: 0px; 
+			
+		}
+		.inputdivone input{
+			border-bottom-right-radius:0px ;
+			border-bottom-left-radius:0px ;
+		}
+		.inputdivtwo input{
+			border-radius: 0px;
+			width: 60%;
+			margin-left: 5%;
+		}
+		.inputdivthere input{
+			border-top-right-radius:0px ;
+			border-top-left-radius:0px ;
+		}
+		.buttonyzm{
+			width: 30%;
+			background-color: white;
+			float: right;
+			margin-right: 5%;
+			height: 50px;
+		}
+		.buttonyzm button{
+			width: 80%;
+			margin-left: 10%;
+			height: 40px;
+			background-color: rgb(255,144,0);
+			color: #FFFFFF;
+			font-size: 14px;
+			border-radius: 5px;
+			line-height: 27px;
+			margin-top: 5px;
+			border: 0px;
+		}
+		#username,#password{
+			width: 90%;
+			margin-left: 5%;
+		}
+		#username{
+			background:url(../../img/dl_icon_yhmc.png) center left 10px no-repeat;background-size: 20px;
+			padding-left: 35px;
+			font-size: 16px;
+		}
+		#yzm{
+			background:url(../../img/yzm.png) center left 10px no-repeat;background-size: 20px;
+			padding-left: 35px;
+			font-size: 16px;
+		}
+		#password{
+			background:url(../../img/dl_icon_mm.png) center left 10px  no-repeat;background-size: 20px;
+			padding-left: 35px;
+			font-size: 16px;
+		}
+		.buttondiv{
+			width: 100%;
+			height: 60px;
+			margin: 10% auto;
+			margin-top: 50px;
+		}
+		.buttonwebs{
+			width: 90%;
+			margin-left: 5%;
+			height: 55px;
+			background-color: rgb(255,144,0);
+			color: #FFFFFF;
+			font-size: 18px;
+			letter-spacing: 5px;
+			border: solid 0px rgb(168,230,254);
+			border-radius: 5px;
+			line-height: 46px;
+		}
+		.titlediv{
+			margin-top: 200px;
+			text-align: center;
+			width: 100%;
+		}
+		
+
+		
+		
+		.mui-input-row .mui-input-clear~.mui-icon-clear{
+			font-size: 20px;
+			position: absolute;
+			z-index: 1;
+			top: 15px;
+			right: 5%;
+			width: 38px;
+			height: 38px;
+			text-align: center;
+			color: #999;
+		}
+		.mui-input-row #yzm~.mui-icon-clear{
+			font-size: 20px;
+			position: absolute;
+			z-index: 1;
+			top: 15px;
+			right: 30%;
+			width: 38px;
+			height: 38px;
+			text-align: center;
+			color: #999;
+		}
+		
+		.jiangex{
+			height: 1px;
+			background-color: white;
+			width: 90%;
+			margin-left: 5%;
+		}
+		.jiangex div{
+			height: 100%;
+			width: 90%;
+			margin-left: 5%;
+			background-color: #DCDCDC;
+		}
+		.login-bottom
+		{
+		
+		    height: 44px;
+		    font-size: 14px;
+			float: left;
+			width: 100%;
+		}
+		.login-bottom div:nth-child(1){
+			margin-left: 5%;
+			float: left;
+			text-align: right;
+			width: 42%;
+			color: white;
+		}
+		.login-bottom div:nth-child(2){
+			float: left;
+			text-align: left;
+			width: 51%;
+			margin-left: 2%;
+			color:rgb(255,162,0);
+		}
+		.mui-bar{
+			background: inherit;
+			border: 0px;
+		}
+		.mui-bar-nav{
+			box-shadow: 0 0px 0px;
+		}
+	</style>
+	<body>
+		
+		<header class="mui-bar mui-bar-nav" style="border: 0px;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;">
+			</a>
+			<h1 class="mui-title" style="color: #FFFFFF;">注册</h1>
+		</header>
+		
+		<div class="contentdiv">
+			<div class="titlediv">
+			</div>
+			<div class="inputdiv mui-input-row inputdivone" style="margin-top: 10%;">
+				<input type="tel" id="username" placeholder="请输入手机号码" class="mui-input-clear" >
+			</div>
+			<div class="jiangex">
+				<div></div>
+			</div>
+			<div class="inputdiv mui-input-row inputdivtwo">
+				<input type="text" id="yzm" placeholder="请输入验证码" class="mui-input-clear" >
+				<div class="buttonyzm">
+					<button id="buttonyzm">获取验证码</button>
+				</div>
+			</div>
+			<div class="jiangex">
+				<div></div>
+			</div>
+			<div class="inputdiv mui-input-row inputdivthere" >
+				<input type="password" id="password" placeholder="请输入密码" class="mui-input-clear" >
+			</div>
+			
+			<div class="buttondiv">
+				<button class="buttonwebs">成为用户</button>
+			</div>
+			
+		</div>
+		<div class="login-bottom" >
+
+			<div>
+				我已阅读并同意	
+			</div>
+			<div>
+				《货帮用户协议》
+					
+			</div>
+		</div>
+	
+		<script src="../../js/mui.min.js"></script> 
+		<script src="../../js/jquery-1.11.3.js"></script>
+		<script type="text/javascript" src="../../js/websocket.js" ></script>
+		
+		<script type="text/javascript" > 
+			mui.init();
+			mui.plusReady(function() {
+				
+				 
+			})
+			$(function(){				
+				var zheight = $(document.body).outerHeight(true);
+				var cheight = $(".contentdiv").outerHeight(true);
+				var cjheight = zheight-cheight+30;
+				console.log(cjheight)
+				$(".login-bottom").css("margin-top",cjheight+"px")
+				mui(".buttondiv").on('tap','.buttonwebs',function(){
+					$("input").blur();
+					var loginname = $("#username").val();
+					var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+					if(!myreg.test(loginname)) 
+					{ 
+					    mui.toast('请输入有效的手机号码！'); 
+					    return false; 
+					}
+					var yzm = $("#yzm").val();
+					var yzmdata = $("#yzm").attr("yzmdata");
+
+					var loginpassword = $("#password").val();
+					if(loginpassword.length <6){
+						mui.toast('密码不少于六位！'); 
+					    return false; 
+					}
+					
+					mui.ajax({
+						url: allurl+"/isLoginname",
+						data:{
+								loginname:loginname
+							},
+						type: "post",
+						
+						success: function(data) {
+							if(data == "error"){
+								mui.toast('手机号已被注册！'); 
+					   			return false; 
+							}else{
+								plus.nativeUI.showWaiting();
+								mui.ajax({
+									url: allurl+"/insertUser",
+									data:{
+											loginname:loginname,
+											loginpassword:loginpassword,
+											utyperecid:4,
+											mobilephone:loginname,
+											status:1,
+											createtime:formatTime(new Date()),
+											astatusrecid:1,
+											uname:"未认证",
+											smsYzm:yzm,
+											havamoney:0
+										},
+									type: "post",
+									
+									success: function(data) {
+
+										if(data != "error"){
+											
+												
+											mui.ajax({
+												url: allurl+"/loginVerification",
+												data:{
+														loginname:loginname,
+														loginpassword:loginpassword
+													},
+												type: "post",
+												
+												success: function(data) {
+													if(data != "error"){
+														localStorage.setItem("huobang_loginId_user",data);
+														$.post(allurl+"/getUsers",{loginId:data,loginname:loginname},function(datas){
+															//datas[0]["loginpassword"] = "";
+															plus.nativeUI.closeWaiting();
+															localStorage.setItem("huobang_login_user",JSON.stringify(datas[0]));
+															mui.toast("登录成功");
+															mui.openWindow({
+												                url: "../main/main.html",
+												                id: "main",
+																styles: {
+																	popGesture: "none"
+																},
+																show: {
+																	aniShow: "pop-in"
+																},
+																waiting: {
+																	autoShow: false
+																}
+														    });
+															
+														})
+														//plus.storage.setItem("username", username);
+														
+													}else{
+														plus.nativeUI.closeWaiting();
+														mui.toast("用户名密码不正确");
+													}
+												},
+												error: function(xhr, type, errorThrown) {
+													plus.nativeUI.closeWaiting();
+													mui.toast("网络及其他原因");
+													
+													console.log(errorThrown);
+												}
+											});
+												
+											
+										}
+									},
+									error: function(xhr, type, errorThrown) {
+										mui.toast("网络及其他原因");
+										
+										console.log(errorThrown);
+									}
+								});
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast("网络及其他原因");
+							
+							console.log(errorThrown);
+						}
+					});
+					
+				})
+				
+				mui(".buttonyzm").on("tap","#buttonyzm",function(){
+					$("input").blur();
+					var loginname = $("#username").val();
+					var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/; 
+					
+					if(!myreg.test(loginname)) 
+					{ 
+					    mui.toast('请输入有效的手机号码！'); 
+					    return false; 
+					}else{
+						mui.ajax({
+							url: allurl+"/isLoginname",
+							data:{
+									loginname:loginname
+								},
+							type: "post",
+							
+							success: function(data) {
+								if(data == "error"){
+									mui.toast('手机号已被注册！'); 
+						   			return false; 
+								}else{
+									
+									
+									mui.ajax({
+										url: allurl+"/SmsAccepted",
+										data:{
+												loginname:loginname,
+											},
+										type: "post",
+										
+										success: function(data) {
+											if(data != "OK"){
+												console.log(data);
+												mui.toast("发送失败");
+											}else{
+												var zongmiao = 120;
+												var sixtenw = window.setInterval(function(){
+													$("#buttonyzm").text("获取（"+zongmiao+"s）");
+													$("#buttonyzm").attr("disabled",true);
+													zongmiao = zongmiao-1;
+													if(zongmiao == 0){
+														window.clearInterval(sixtenw);
+														$("#buttonyzm").attr("disabled",false);
+														$("#buttonyzm").text("获取验证码");
+													}
+												},1000);
+												mui.toast("请稍后！")					
+											}
+											
+										},
+										error: function(xhr, type, errorThrown) {
+											mui.toast("网络及其他原因");
+											
+											console.log(errorThrown);
+										}
+									});
+								}
+							}
+						})
+						
+						//13133696819
+						/*mui.ajax({
+							url: "http://win.bbrfs.cn/Public/sms/send.php",
+							data:{
+									mobile:loginname,
+								},
+							type: "post",
+							
+							success: function(data) {
+								//alert(data);
+								var dataobj = JSON.parse(data);
+								$("#yzm").attr("yzmdata",dataobj.sms)
+								alert(dataobj.sms);
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast("网络及其他原因");
+								
+								console.log(errorThrown);
+							}
+						});*/
+						
+					}
+					
+				});
+			})
+			//格式化时间
+			function formatTime(_time){
+			    var year = _time.getFullYear();
+			    var month = _time.getMonth()+1<10 ? "0"+(_time.getMonth()+1) : _time.getMonth()+1;
+			    var day = _time.getDate()<10 ? "0"+_time.getDate() : _time.getDate();
+			    var hour = _time.getHours()<10 ? "0"+_time.getHours() : _time.getHours();
+			    var minute = _time.getMinutes()<10 ? "0"+_time.getMinutes() : _time.getMinutes();
+			    var miao = _time.getSeconds()<10 ? "0"+_time.getSeconds() : _time.getSeconds();
+			    return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+miao;
+			}
+		</script>
+	</body>
+</html>

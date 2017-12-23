@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+
+			.headcount{
+				background-color:rgb(255,114,0);
+				
+			} 
+			.imgdiv{
+				text-align: center;
+				margin-top: 40%;
+				color: #666;
+			}
+			.imgdiv img{
+				width: 150px;
+			}
+			.hlinediv{
+				float: left;
+				width: 100%;
+				border-bottom: 1px solid #CCCCCC;
+				font-size: 14px;
+			}
+			.divCon{
+				padding-top: 13px;
+
+				width: 90%;
+				float: left;
+				border-bottom: 1px solid #CCCCCC;
+			}
+			.headcontent{
+				float: left;
+				width: 20%;
+				text-align: center;
+			}
+			.contentdiv{
+				float:left;
+				width: 80%;
+			}
+			.contentdiv p{
+				font-size: 12px;
+			}
+			.jine{
+				float: right;
+				padding-right: 10px;
+			}
+			.noborder{
+				border: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">订单问题</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div class="imgdiv">
+				<img src="../../img/ddwt@2x.png" />
+				<div id="orderproblem">
+					暂时还没有订单问题哦~
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				setFeedBackHtml();
+			});
+			function setFeedBackHtml(){
+				var userrecid = loginuser["recid"];
+				$.post(allurl+"/getOrderProblems",{loginId:huobang_loginId,pagesize:1000,currpage:1,userrecid:userrecid},function(data){
+					if(data != "wdl"){
+						if(data.length>0){
+							var addhtml = "";
+						
+							//console.log(data);
+							for(var i=0;i<data.length;i++){
+								var replyc = "<span style='color:red'>未回复</span>"; 
+								if(data[i].replycontent != ""){
+									replyc = data[i].replycontent;
+								}
+								addhtml = addhtml+'<div class="hlinediv" recid="'+data[i].recid+'" index="'+i+'" orderrecid="'+data[i].orderrecid+'"><div class="divCon noborder"><div class="headcontent"><div class="headdiv">'+data[i].orderrecid+'<br />'+data[i].username+'</div></div><div class="contentdiv">'+data[i].content+'<div class="jine">'+data[i].createtime+'</div><p>'+replyc+'</p></div></div></div>'
+							} 
+							$(".mui-content").html(addhtml);
+						}
+						
+					}else{
+						alertLoginMsg()
+						
+					}
+				})
+			}
+			$(function(){
+				mui(".mui-content").on("tap",".hlinediv",function(){
+					var recid = $(this).attr("orderrecid");
+					$.post(allurl+"/getOrders",{loginId:huobang_loginId,recid:recid},function(data){
+						if(data != "wdl"){
+							if(data.length > 0){
+								mui.openWindow({
+									url:"orderDetails.html",
+					                id: "orderDetails",
+									styles: {
+										popGesture: "none"
+									},
+									show: {
+										aniShow: "pop-in"
+									},
+									waiting: {
+										autoShow: false
+									},
+									extras:{
+										orderDetail:JSON.stringify(data[0])
+									}
+							    });
+							}
+						}else{
+							alertLoginMsg() 
+							
+						}
+					})
+					
+				})
+			})
+		</script>
+	</body>
+
+</html>

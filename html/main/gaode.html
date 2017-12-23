@@ -1,0 +1,692 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+		<link rel="stylesheet" href="../../css/mui.min.css">
+		<script src="http://cache.amap.com/lbs/static/es5.min.js"></script>
+		<script src="http://webapi.amap.com/maps?v=1.4.0&key=c8d499635271ab4f9d449d35911e2cf1"></script>
+		<script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
+		<script src="http://webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+
+    <style type="text/css">
+        .info {
+            border: solid 1px silver;
+        }
+        #myPageTop{
+        	top: 45px;
+        	width: 95%;
+        	height: 50px;
+        	border-radius: 20px;
+        }
+        div.mui-search{
+        	top: 45px;
+        	width: 95%;
+        }
+     
+        div.autobox{
+        	background: #FFFFFF;
+        }
+        input.mui-input-clear{
+        	background: #FFFFFF;
+        	top: 45px;
+        	width: 100%;
+        }
+        div.info-top {
+            position: relative;
+            background: none repeat scroll 0 0 #F9F9F9;
+            border-bottom: 1px solid #CCC;
+            border-radius: 5px 5px 0 0;
+        }
+        div.info-top div {
+            display: inline-block;
+            color: #333333;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 31px;
+            padding: 0 10px;
+        }
+        div.info-top img {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition-duration: 0.25s;
+        }
+        div.info-top img:hover {
+            box-shadow: 0px 0px 5px #000;
+        }
+        div.info-middle {
+            font-size: 12px;
+            padding: 6px;
+            line-height: 20px;
+        }
+        div.info-bottom {
+            height: 0px;
+            width: 100%;
+            clear: both;
+            text-align: center;
+        }
+        div.info-bottom img {
+            position: relative;
+            z-index: 104;
+        }
+        span {
+            margin-left: 5px;
+            font-size: 11px;
+        }
+        .info-middle img {
+            float: left;
+            margin-right: 6px;
+        }
+        .headcount{
+			background-color:rgb(255,114,0);
+		} 
+		.mui-input-row .mui-input-clear~.mui-icon-clear{
+			font-size: 20px;
+			position: absolute;
+			z-index: 1;
+			top: 8px;
+			right: 3%;
+			width: 38px;
+			height: 38px;
+			text-align: center;
+			color: #999;
+		}
+		.mui-input-clear{
+			width: 100%!important;
+		}
+		#surediv,#query{
+			position: fixed;
+			z-index: 99;
+			width: 100%;
+			background-color: #FF7200;
+			color: white;
+			text-align: center;
+			height: 30px;
+			line-height: 30px;
+			bottom: 0px;
+			display:none;
+		}
+		#surediv{
+			display: block;
+			background-color: #2AC845;
+		}
+		#showLuX{
+			position: fixed;
+			height: 60%; 
+			z-index: 99;
+			top: 120px;
+			background-color: rgba(50,50,50,0.6);
+			color: white;
+			width: 100%;
+			overflow: auto;
+			display: none;
+		}
+		#floatdiv{
+			border-radius: 10px;
+			top:120px;
+			position: absolute;
+			height: 100px;
+			background-color: rgba(0,0,0,0.4);
+			z-index: 99;
+			color: #FFFFFF;
+			width: 50%;
+			right: 0px;
+			padding-top: 8px;
+			font-size: 12px;
+		}
+    </style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<h1 class="mui-title" style="color: white;">选择位置</h1>
+		</header>
+
+
+		<div id="container"></div>
+		<div id="results"></div>
+		<div id="showLuX">
+			
+		</div>
+		<div id="surediv">
+			确定 
+		</div>
+		<div id="query">
+			路线详情 
+		</div>
+		<!--<div class="mui-search">
+			<input type="search" class="mui-input-clear" id="keyword" name="keyword" placeholder="输入地名">
+			<div id="result1" class="autobox" name="result1"></div>
+		</div>-->
+		
+		
+		
+		   <div id="myPageTop">
+			<div class="mui-input-row" >
+	       		<input type="search" class="mui-input-clear" id="keyword" placeholder="输入地名" name="keyword" />
+			</div>
+	       <div id="result1" class="autobox" name="result1"></div>
+          </div>
+          <div id="floatdiv">
+          	<div id="lnglat" style="display: none;"></div>
+          	<div id="address"></div>
+          	<div id="nearestJunction"></div>
+          </div>
+
+		<script type="text/javascript" src="../../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../../js/common.js" ></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			  //地图加载
+//			  var map = new AMap.Map("container", {
+//			      resizeEnable: true
+//			  });
+//			  //输入提示
+//			  var autoOptions = {
+//			      input: "tipinput"
+//			  };
+//			  var auto = new AMap.Autocomplete(autoOptions);
+//			  var placeSearch = new AMap.PlaceSearch({
+//			      map: map
+//			  });  //构造地点查询类
+//			  AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+//			  function select(e) {
+//			      placeSearch.setCity(e.poi.adcode);
+//			      placeSearch.search(e.poi.name);  //关键字查询查询
+//			  }
+			mui.init();
+			mui.plusReady(function(){
+				mapInit();
+			})
+			var addressXinx = new Object();
+			var mapObj;
+			var marker = new Array();
+			var windowsArr = new Array();
+			var cloudDataLayer;
+			var MSearch;
+			var keyword;
+			//初始化地图对象，加载地图  
+			function mapInit() {
+				var gaode = plus.webview.getWebviewById('gaode');
+				var currlongitude,currlatitude;
+				addressXinx["thismethod"] = gaode.thismethod;
+				if(gaode.longitude!=null && gaode.longitude!=""){
+					currlongitude = gaode.longitude;
+					currlatitude = gaode.latitude;
+				}else{
+					currlongitude = 116.23
+					currlatitude = 39.54
+					mui.toast("获取定位失败！")
+				}
+				
+				//document.getElementById("autoclass").style.margin="0px,0px,0px,100px";
+				
+				//	AMap.event.addListener(mapObj,'click',getLnglat); //点击事件
+				 mapObj = new AMap.Map('container', {
+						//   resizeEnable: true,
+						zoom: 13,
+						center: [currlongitude,currlatitude]
+					});
+
+				//加载输入提示插件 
+				var geocoder;
+				AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
+				    var positionPicker = new PositionPicker({
+				        mode:'dragMap',//设定为拖拽地图模式，可选'dragMap'、'dragMarker'，默认为'dragMap'
+				        map:mapObj//依赖地图对象
+				    });
+				    //TODO:事件绑定、结果处理等
+				    positionPicker.start();
+				     positionPicker.on('success', function(positionResult) {
+			            document.getElementById('lnglat').innerHTML = positionResult.position;
+			            document.getElementById('address').innerHTML = positionResult.address;
+			            document.getElementById('nearestJunction').innerHTML = positionResult.nearestJunction;
+			        });
+				});
+				mapObj.plugin(["AMap.Autocomplete",'AMap.Geocoder'], function() {
+					//判断是否IE浏览器  
+					if(navigator.userAgent.indexOf("MSIE") > 0) {
+						document.getElementById("keyword").onpropertychange = autoSearch;
+					} else {
+						document.getElementById("keyword").oninput = autoSearch;
+					}
+					 geocoder = new AMap.Geocoder({
+				        city: "010"//城市，默认：“全国”
+				    });
+				});
+				
+				if(addressXinx["thismethod"] == "inputendplace"){
+					var markerOption = {
+						map: mapObj,
+						icon: "http://webapi.amap.com/theme/v1.3/markers/n/start.png",
+						position: new AMap.LngLat(currlongitude, currlatitude)
+					};
+					var mar = new AMap.Marker(markerOption);
+					marker.push(mar);
+					var lnglatXY=[currlongitude,currlatitude];
+					geocoder.getAddress(lnglatXY, function(status, result) {
+					    if (status === 'complete' && result.info === 'OK') {
+					       //获得了有效的地址信息:
+					       //即，result.regeocode.formattedAddress
+					       //alert(result.regeocode.formattedAddress)
+					       addressXinx["startplaceshowtext"] =  result.regeocode.formattedAddress;
+					    }
+					}); 
+				}
+				
+				$(".amap-logo").remove();
+				$(".amap-copyright").remove();
+				
+			} 
+
+			function GdMap() {
+
+			}
+			//输入提示
+			$(function(){
+				$(".mui-input-clear").click(function(){
+					document.getElementById("result1").style.display = "none";
+				})
+			})
+			function autoSearch() {
+
+				var keywords = document.getElementById("keyword").value;
+				var auto;
+				var autoOptions = {
+					pageIndex: 1,
+					pageSize: 10,
+					city: "" //城市，默认全国  
+				};
+				if(keywords == ""){
+					document.getElementById("result1").style.display = "none";
+					return false;
+				}
+				auto = new AMap.Autocomplete(autoOptions);
+				//查询成功时返回查询结果  
+				// AMap.event.addListener(auto, "complete", autocomplete_CallBack);  
+				//auto.search(keywords);
+
+				auto.search(keywords, function(status, result) {
+					//alert(result);
+					autocomplete_CallBack(result);
+				});
+
+			}
+			//输出输入提示结果的回调函数  
+			function autocomplete_CallBack(data) {
+				// console.log(data);
+				var resultStr = "";
+				var tipArr = [];
+				tipArr = data.tips;
+
+				if(tipArr!=null && tipArr.length > 0) {
+					for(var i = 0; i < tipArr.length; i++) {
+						resultStr += "<div  id='divid" + (i + 1) + "' onmouseover='openMarkerTipById(" + (i + 1) +
+							",this)' onclick='selectResult(" + i + ")' onmouseout='onmouseout_MarkerStyle(" + (i + 1) +
+							",this)' style=\"font-size: 13px;cursor:pointer;padding:5px 5px 5px 5px;\">" + tipArr[i].name + "<span style='color:#C1C1C1;'>" + tipArr[i].district + "</span></div>";
+					}
+				} else {
+					resultStr = " π__π 亲,人家找不到结果!<br />要不试试：<br />1.请确保所有字词拼写正确<br />2.尝试不同的关键字<br />3.尝试更宽泛的关键字";
+				}
+				
+				document.getElementById("result1").innerHTML = resultStr;
+				document.getElementById("result1").style.display = "block";
+			}
+			//从输入提示框中选择关键字并查询  
+			function selectResult(index) {
+
+				if(marker.length > 0) {
+					mapObj.remove(marker); //清除上次marker
+					marker.splice(0,marker.length);
+				}
+
+				if(navigator.userAgent.indexOf("MSIE") > 0) {
+					document.getElementById("keyword").onpropertychange = null;
+					document.getElementById("keyword").onfocus = focus_callback;
+				}
+				//截取输入提示的关键字部分  
+				var text = document.getElementById("divid" + (index + 1)).innerHTML.replace(/<[^>].*?>.*<\/[^>].*?>/g, "");
+				var thisobj = $("#divid" + (index + 1));
+				addressXinx["dizhi"] = thisobj.children("span").text();
+				document.getElementById("keyword").value = text;
+				document.getElementById("result1").style.display = "none";
+				//根据选择的输入提示关键字查询  
+				mapObj.plugin(["AMap.PlaceSearch"], function() {
+					var msearch = new AMap.PlaceSearch(); //构造地点查询类  
+					AMap.event.addListener(msearch, "complete", Search_CallBack); //查询成功时的回调函数  
+					msearch.search(text); //关键字查询查询  
+				});
+			}
+
+			function openMarkerTipById1(pointid, thiss) { //根据id 打开搜索结果点tip  
+				thiss.style.background = '#CAE1FF';
+				windowsArr[pointid].open(mapObj, marker[pointid]);
+			}
+			//输入提示框鼠标滑过时的样式  
+			function openMarkerTipById(pointid, thiss) { //根据id打开搜索结果点tip    
+				thiss.style.background = '#CAE1FF';
+			}
+			//输入提示框鼠标移出时的样式  
+			function onmouseout_MarkerStyle(pointid, thiss) { //鼠标移开后点样式恢复    
+				thiss.style.background = "";
+			}
+			//回调函数  
+			function Search_CallBack(data) {
+				var resultStr = "";
+				var poiArr = data.poiList.pois;
+				var resultCount = poiArr.length;
+				for(var i = 0; i < resultCount; i++) {
+					resultStr += "<div id='divid" + (i + 1) + "' onmouseover='openMarkerTipById1(" + i + ",this)' onmouseout='onmouseout_MarkerStyle(" + (i + 1) + ",this)' style=\"font-size: 12px;cursor:pointer;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\"><table><tr><td><img src=\"http://webapi.amap.com/images/" + (i + 1) + ".png\"></td>" + "<td><h3><font color=\"#00a6ac\">名称: " + poiArr[i].name + "</font></h3>";
+					resultStr += TipContents(poiArr[i].type, poiArr[i].address, poiArr[i].tel) + "</td></tr></table></div>";
+					addmarker(i, poiArr[i]);
+				}
+				mapObj.setFitView();
+				document.getElementById("results").innerHTML = resultStr;
+			}
+
+			function TipContents(type, address, tel) { //窗体内容  
+				if(type == "" || type == "undefined" || type == null || type == " undefined" || typeof type == "undefined") {
+					type = "暂无";
+				}
+				if(address == "" || address == "undefined" || address == null || address == " undefined" || typeof address == "undefined") {
+					address = "暂无";
+				}
+				if(tel == "" || tel == "undefined" || tel == null || tel == " undefined" || typeof address == "tel") {
+					tel = "暂无";
+				}
+				var str = "&nbsp;&nbsp;地址：" + address + "<br />&nbsp;&nbsp;电话：" + tel + " <br />&nbsp;&nbsp;类型：" + type;
+				return str;
+			}
+			//添加marker&infowindow      
+			function addmarker(i, d) {
+				var lngX;
+				var latY;
+				var iName;
+				var iAddress;
+				if(d.location) {
+					lngX = d.location.getLng();
+					latY = d.location.getLat();
+				} else {
+					lngX = d._location.getLng();
+					latY = d._location.getLat();
+				}
+				if(d.name) {
+					iName = d.name;
+				} else {
+					iName = d._name;
+				}
+				addressXinx["name"] = iName;
+				if(d.name) {
+					iAddress = d.address;
+				} else {
+					iAddress = d._address;
+				}
+				addressXinx["adress"] = iAddress;
+				mapObj.setCenter([lngX,latY]) ;
+				/*var markerOption = {
+					map: mapObj,
+					icon: "http://webapi.amap.com/images/" + (i + 1) + ".png",
+					position: new AMap.LngLat(lngX, latY)
+				};
+				var mar = new AMap.Marker(markerOption);
+				marker.push(mar);//(new AMap.LngLat(lngX, latY));
+        
+//				var infoWindow = new AMap.InfoWindow({
+//					content: "<h3><font color=\"#00a6ac\">" + (i + 1) + ". " + iName + "</font></h3>" + TipContents(d.type, iAddress, d.tel),
+//					size: new AMap.Size(300, 0),
+//					autoMove: true,
+//					offset: new AMap.Pixel(0, -30)
+//				});
+    content = [];
+    
+    //var temp="<img src='http://webapi.amap.com/images/1.png' name='"+i+"' onclick='img_click("+i+")'>"
+    //content.push(temp);//("<img src='http://webapi.amap.com/images/1.png'>地址：北京市朝阳区阜通东大街6号院3号楼东北8.3公里");
+    var buttons = '<button type="button" class="mui-btn mui-btn-primary" onclick="img_click('+i+')">确定</button>';
+    content.push("名称："+iName)
+    content.push("地址："+iAddress);
+    content.push(buttons)
+    content.push("");
+				var infoWindow = new AMap.InfoWindow({
+					isCustom: true, //使用自定义窗体
+					content: createInfoWindow(iName, content.join("<br/>")),
+					offset: new AMap.Pixel(16, -45)
+				});
+
+				windowsArr.push(infoWindow);
+				var aa = function(e) {
+					infoWindow.open(mapObj, mar.getPosition());
+				};
+				AMap.event.addListener(mar, "click", aa);*/
+			}
+
+	
+
+			//构建自定义信息窗体
+			function createInfoWindow(title, content) {
+				var info = document.createElement("div");
+				info.className = "info";
+
+				//可以通过下面的方式修改自定义窗体的宽高
+				//info.style.width = "400px";
+				// 定义顶部标题
+				var top = document.createElement("div");
+				var titleD = document.createElement("div");
+				var closeX = document.createElement("img");
+				top.className = "info-top";
+				titleD.innerHTML = "信息";
+				closeX.src = "https://webapi.amap.com/images/close2.gif";
+				closeX.onclick = closeInfoWindow;
+
+				top.appendChild(titleD);
+				top.appendChild(closeX);
+				info.appendChild(top);
+
+				// 定义中部内容
+				var middle = document.createElement("div");
+				middle.className = "info-middle";
+				middle.style.backgroundColor = 'white';
+				middle.innerHTML = content;
+				info.appendChild(middle);
+
+				// 定义底部内容
+				var bottom = document.createElement("div");
+				bottom.className = "info-bottom";
+				bottom.style.position = 'relative';
+				bottom.style.top = '0px';
+				bottom.style.margin = '0 auto';
+				var sharp = document.createElement("img");
+				sharp.src = "https://webapi.amap.com/images/sharp.png";
+				bottom.appendChild(sharp);
+				info.appendChild(bottom);
+				return info;
+			}
+
+			//关闭信息窗体
+			function closeInfoWindow() {
+				mapObj.clearInfoWindow();
+			}
+			function img_click(id){
+				
+				var point= marker[id];
+				var marketpoint=	point.getPosition();
+				//console.log(JSON.stringify(marketpoint))
+				//console.log(addressXinx["dizhi"]);
+				//console.log("经度:"+marketpoint.getLng()+"维度:"+marketpoint.getLat());
+				addressXinx["longitude"] = marketpoint.getLng();
+				addressXinx["latitude"] = marketpoint.getLat();
+				//console.log(addressXinx["thismethod"])
+				var MainShow = plus.webview.getWebviewById('MainShow.html');
+				if(addressXinx["thismethod"] == "inputstartplace"){
+					
+					MainShow.evalJS("setStartPlace('"+JSON.stringify(addressXinx)+"');") 
+					mui.back();
+				}else{
+					var startaddressname = MainShow.addressname;
+					var gaode = plus.webview.getWebviewById('gaode');
+					var longitude = gaode.longitude;
+					var latitude = gaode.latitude;
+					  //构造路线导航类
+					mapObj.clearMap();
+					AMap.service('AMap.Driving',function(){//回调函数
+					    var driving = new AMap.Driving({
+					        map: mapObj
+					    }); 
+					    // 根据起终点经纬度规划驾车导航路线
+					    driving.search([longitude, latitude], [marketpoint.getLng(), marketpoint.getLat()], function(status, result) {
+					    	if(status != "complete"){
+					    		mui.toast("查询结果有误！")
+					    		return false;
+					    	}
+					    	$("#query").show();
+					    	
+					    	driving_routeCallBack(result,startaddressname);
+					    	var stepss = result.routes;
+					    	var distance = 0;
+						    for(var i in stepss){
+						    	for(var j in stepss[i]){
+						    		for(var h in stepss[i][j]){
+						    			if(stepss[i][j][h].distance != null){
+						    				distance = distance*1+stepss[i][j][h].distance*1
+						    			}
+						    			
+						    		}
+						    	}
+						    }
+						    
+						    distance = distance/1000;
+						    addressXinx["distance"] = distance;
+						    var btnArray = ['再看看', '是'];
+						    var MainShow = plus.webview.getWebviewById('MainShow.html');;
+							MainShow.evalJS("setEndPlace('"+JSON.stringify(addressXinx)+"');") ;
+							mui.confirm('此行大约'+distance+'公里,是否确认？', '提示', btnArray, function(e) {
+								if (e.index == 1) {
+									
+									mui.back();
+								} else {
+									mui.toast("返回此为目的地！");
+								}
+							})
+						    
+						});
+				    })
+					
+				}
+				closeInfoWindow();
+			}
+			
+		$("#surediv").click(function(){
+			addressXinx["dizhi"] = $("#address").text();
+			addressXinx["name"] = $("#nearestJunction").text();
+			var positions = $("#lnglat").text();
+			var positionarr = positions.split(",");
+			addressXinx["longitude"] = positionarr[0];
+			addressXinx["latitude"] = positionarr[1];
+			var MainShow = plus.webview.getWebviewById('MainShow.html');
+			var startaddressname = MainShow.addressname;
+					var gaode = plus.webview.getWebviewById('gaode');
+					var longitude = gaode.longitude;
+					var latitude = gaode.latitude;
+					  //构造路线导航类
+					mapObj.clearMap();
+					AMap.service('AMap.Driving',function(){//回调函数
+					    var driving = new AMap.Driving({
+					        map: mapObj
+					    }); 
+					    // 根据起终点经纬度规划驾车导航路线
+					    driving.search([longitude, latitude], [positionarr[0],positionarr[1]], function(status, result) {
+					    	if(status != "complete"){
+					    		mui.toast("查询结果有误！")
+					    		return false;
+					    	}
+					    	//$("#query").show();
+					    	
+					    	
+					    	driving_routeCallBack(result,startaddressname);
+					    	var stepss = result.routes;
+					    	var distance = 0;
+						    for(var i in stepss){
+						    	for(var j in stepss[i]){
+						    		for(var h in stepss[i][j]){
+						    			if(stepss[i][j][h].distance != null){
+						    				distance = distance*1+stepss[i][j][h].distance*1
+						    			}
+						    			
+						    		}
+						    	}
+						    }
+						    
+						    distance = distance/1000;
+						    addressXinx["distance"] = distance;
+						    var btnArray = ['再看看', '是'];
+						    var MainShow = plus.webview.getWebviewById('MainShow.html');;
+							MainShow.evalJS("setEndPlace('"+JSON.stringify(addressXinx)+"');") ;
+							mui.confirm('此行大约'+distance+'公里,是否确认？', '提示', btnArray, function(e) {
+								if (e.index == 1) {
+									
+									mui.back();
+								} else {
+									mui.toast("返回此为目的地！");
+								}
+							})
+						    
+						});
+				    })
+		})
+			//导航结果展示
+		function driving_routeCallBack(data,startaddressname) {
+			var routeS = data.routes;
+			if (routeS.length <= 0) {
+				document.getElementById("r_result").innerHTML = "未查找到任何结果!<br />建议：<br />1.请确保所有字词拼写正确。<br />2.尝试不同的关键字。<br />3.尝试更宽泛的关键字。";
+			} 
+			else{ 
+				route_text="";
+			 	for(var v =0; v< routeS.length;v++){
+					//驾车步骤数
+					steps = routeS[v].steps
+					var route_count = steps.length;
+					//行车距离（米）
+					var distance = routeS[v].distance;
+					//拼接输出html
+					for(var i=0 ;i< steps.length;i++){
+						route_text += i +'、'+steps[i].instruction+'<br />'
+					}
+				}
+			 	//console.log(route_text)
+				//输出行车路线指示
+				$("#showLuX").html(route_text)
+				
+			} 	
+			
+	    	/*if(!$("#showLuX").hasClass("showthis")){
+	    		$("#showLuX").show();
+	    		$("#showLuX").addClass("showthis");
+	    		$("#query").text("隐藏");
+	    	}*/
+		}
+
+		/*$("#query").click(function(){
+			if($("#showLuX").hasClass("showthis")){
+				$("#showLuX").removeClass("showthis")
+				$("#showLuX").hide()
+				document.getElementById('query').innerText = '路线详情';
+			
+			}else{
+				$("#showLuX").addClass("showthis")
+				$("#showLuX").show()
+				document.getElementById('query').innerText = '隐藏路线';
+				
+			}
+		});*/
+		</script>
+	</body>
+
+</html>

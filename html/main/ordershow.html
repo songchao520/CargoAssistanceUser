@@ -1,0 +1,1246 @@
+<!--
+	作者：369126371@qq.com
+	时间：2016-11-04
+	描述：首页
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link rel="stylesheet" href="../../iconfont/iconfont.css" />
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<style>
+			body{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.diplaynone{
+				display:none;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-progress-bar{
+				background-color: rgb(255,114,0);
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				color: rgb(255,114,0);
+			}
+			.mui-slider-item{
+				height: 100%;
+			}
+
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-group .mui-slider-item{
+				border-bottom: 0px;	
+			}
+			.mui-content{
+				background:none;
+				overflow: hidden;
+				
+			}
+			.orderdiv{
+				float: left;
+				width: 90%;
+				margin-left: 5%;
+				background-color: #FFFFFF;
+				border: 1px solid rgb(220,220,220);
+				margin-top: 10px;
+				font-size: 16px;
+			}			
+			.hlinediv{
+				float: left;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+			}
+			.leftpic{
+				float: left; 
+				height: 100%;
+				width: 10%;
+				
+			}
+			.leftpic .mui-icon{
+				font-size: 18px;
+				padding-left: 10px;
+				color: #40AFFE;
+			}
+			.topdiv .leftpic{
+				color: #FF7200;
+			}
+			.rightpic{
+				float: left;
+				height: 100%;
+				width: 30%;
+				text-align: right;
+				color: #999;
+			}
+			.picspan{
+				float: right;
+				padding-top: 2px;
+			}
+			.textdiv{
+				color: #666;
+				float: left;
+				height: 100%;
+				width: 60%;
+			}
+			.middledivtop{
+				float: left;
+				width: 100%;
+				height: 16px;
+				margin-top: -5px;
+				
+			}
+			.middledivtoppic{
+				float: left;
+				width: 10%;
+				text-align: center;
+				color: orangered;
+			}
+			.middledivtoppic .mui-icon{
+				font-size: 18px;
+				font-weight: 700;
+			}
+			.middledivtoptext{
+				float: left;
+				width: 60%;
+				display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			}
+			.middledivtext{
+				float: left;
+				width: 60%;
+				margin-top: 0px;
+				height: 30px;
+				margin-left: 10%;
+				font-size: 14px;
+				color: #CCCCCC;
+				display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+				
+			}
+			.footdiv .middledivtop .middledivtoppic{
+				color: #008000;
+			}
+			#haveinhand .rightpic{
+				color:#FF7200
+			}
+			.middledivtext .textdivfoot{
+				float: right;
+				
+			}
+			.ckmxdiv{
+				color: #CCCCCC;
+				font-size: 13px;
+				text-align: right;
+			}
+			.viewdetails{
+				float: left;
+				width: 95%;
+				margin-left: 2.5%;
+				background-color: #FFFFFF;
+				display: none;
+				
+			}
+			.detailsleft{
+				float: left;
+				width: 40%;
+				padding: 10px;
+			}
+			.detailsright{
+				float: left;
+				width: 60%;
+			}
+			.leftoneimg{
+				width: 80px;
+				border-radius: 50%;
+				background: url(../../img/dlym.jpg);
+				height: 80px;
+				background-size:cover;
+			}
+			.lefttwo{
+				font-size: 12px;
+				text-indent: 1em;
+				
+			}
+			.detailsright div{
+				height: 40px;
+				line-height: 40px;
+			}
+			.rmbspan{
+				color:#FF7200;
+				font-weight: 500;
+			}
+			.phonespan{
+				color: #FF7200;
+			}
+			.trianglediv{
+				float: left;
+				width: 100%;
+				display: none;
+			}
+			.triangle-downs {
+			    width: 0;
+			    height: 0;
+			    border-left:  28px solid transparent;
+			    border-right:  3px solid transparent;
+			    border-bottom: 16px solid #FFFFFF;
+			    margin-left: 80%;
+			   
+			}
+			.successtoorder,.canceltoorder,.complaint,.premium{
+				position: relative;
+				width: 60%;
+				margin-left: 20%;
+				text-align: center;
+				border-radius: 10px;
+				padding: 2px;
+				height: 30px;
+				line-height: 30px;
+				color: white;
+				margin-top: 2px;
+
+			}
+			.successtoorder{
+				background-color: green;
+			}
+			.tiptodriver{
+				position: relative;
+				color: red;
+			}
+			.canceltoorder{
+				background-color: gray;
+			}
+			.complaint,.premium{				
+				background-color: #F0AD4E;
+			}
+			.layui-m-anim-scale h3{
+				margin-top: 0px;
+				margin-bottom: 0px;
+			}
+			.layui-m-layercont{
+				padding: 20px 30px!important;
+				background-color: #CCCCCC;
+			}
+			.showstars{
+				padding: 0px 20px;
+				color: white;
+				font-size: 30px;
+				padding-top: 20px;
+			}
+			.showstars i{
+				text-align: center; cursor:default; font-style: normal;
+			}
+			.showstars .on{ 
+				color: #FF7200;
+			}
+			.complaintdivs{
+				margin-top: -30px;
+				margin-bottom: -50px;
+			}
+			.complaintdivs textarea{
+				padding: 0px;
+			}
+
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">订单</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item mui-active" href="#appointment">
+						预约中
+					</a>
+					<a class="mui-control-item " href="#haveinhand">
+						进行中
+					</a>
+					<a class="mui-control-item" href="#completed">
+						已完成
+					</a>
+					<a class="mui-control-item" href="#canceled">
+						已取消
+					</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div> 
+				<div class="mui-slider-group" id="sliderdiv">
+					<div id="appointment" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll0" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								
+							</div>
+						</div>
+					</div>
+					<div id="haveinhand" class="mui-slider-item mui-control-content">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="completed" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll" id="mui-scroll2">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div id="canceled" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-loading">
+									<div class="mui-spinner">
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			
+			
+
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../../js/mui.min.js" ></script>
+	<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="../../js/mui.pullToRefresh.js" ></script>
+	<script type="text/javascript" src="../../js/mui.pullToRefresh.material.js" ></script>
+	<script type="text/javascript" src="../../js/layer_mobile/layer.js" ></script>
+	<script>
+		var currpage = 1;
+		var havePage = true;
+		mui.init({
+			swipeBack: false,
+			statusBarBackground: '#f7f7f7',
+			gestureConfig: {  
+				doubletap: true
+			}
+		});
+
+		
+		 //创建子页面，首个选项卡页面显示，其它均隐藏
+		 var alipay;
+		mui.plusReady(function() { 
+			plus.payment.getChannels(function(channels){
+				for(var i in channels){
+					var channel=channels[i];
+					if(channel.id=='alipay'||channel.id=='alipay'){	// 过滤掉不支持的支付通道：暂不支持360相关支付
+						alipay = channel;
+					}
+
+					checkServices(alipay);
+				}
+			},function(e){
+				outLine('获取支付通道失败：'+e.message);
+			});
+			setOrderShowHtml("#scroll0",1,1000,1);
+		});	
+		var sheight = null;
+		if(sheight == null){
+			var zheight = $(window).height(); 
+			var cheight = zheight-90;
+			setheight(cheight)
+		}
+		function setheight(cheight){
+			$(function(){
+				sheight = cheight;
+				$(".mui-control-content").css("min-height",cheight+"px");
+				
+			});
+		};
+		function setOrderShowHtml(thisid,orderstatus,pagesize,thiscurrpage){
+			$.post(allurl+"/getOrders",{loginId:huobang_loginId,orderstatus:orderstatus,userrecid:loginuser["recid"],pagesize:pagesize,currpage:thiscurrpage},function(data){
+				if(data != "wdl"){
+					if(data.length > 0){
+						//console.log(data.length)
+						var showHtml = "";
+						for(var i=0;i<data.length;i++){
+							//console.log(JSON.stringify(data[i]));
+							var riqi = "";
+							var jiag = "";
+							var buttonhtm = "";
+							var flag = false;
+							var statusname = data[i]["statusname"];
+							if(orderstatus == 1){
+								
+								if(data[i]["appointmenttime"]!=""){
+									var dates = new Date(data[i]["appointmenttime"]);
+									
+									var datess = new Date();
+									if(dates<datess){
+
+										flag = true;
+										//orderstatus = 4;
+										statusname = "过期取消"
+									}else{
+										buttonhtm = '<div class="canceltoorder" recid="'+data[i]["recid"]+'">取消</div><div class="premium" recid="'+data[i]["recid"]+'" bargaining="'+data[i]["bargaining"]+'" >补价</div>'
+									}
+								}
+								
+							} 
+							jiag = data[i]["bargaining"].toFixed(2);
+							riqi = data[i]["appointmenttime"];
+							if(orderstatus == 2){
+								buttonhtm = '<div class="successtoorder" bargaining="'+data[i]["bargaining"]+'"  recid="'+data[i]["recid"]+'" driverrecid="'+data[i]["driverrecid"]+'" driverphone="'+data[i]["driverphone"]+'">完成</div><div class="complaint" recid="'+data[i]["recid"]+'" driverrecid="'+data[i]["driverrecid"]+'" >投诉</div>'
+								
+							} 
+							if(orderstatus == 3){
+								buttonhtm = '<div class="tiptodriver" bargaining="'+data[i]["bargaining"]+'"  recid="'+data[i]["recid"]+'" driverrecid="'+data[i]["driverrecid"]+'" driverphone="'+data[i]["driverphone"]+'">发红包</div>'
+								if(data[i]["actualprice"] != ""){
+									jiag = data[i]["actualprice"].toFixed(2);
+								}else{
+									jiag = data[i]["bargaining"].toFixed(2);
+								}
+								
+								riqi = data[i]["endtime"];
+							}
+							
+							
+							
+							var imghtml='<div class="viewdetails"><div class="detailsleft"><div class="leftone"></div></div><div class="detailsright" ><div class="rightone">货物：'+data[i]["goodsname"]+'/'+data[i]["goodsnumber"]+'</div><div class="righttwo">价格：￥<span class="rmbspan">'+jiag+'</span>元</div><div class="rightthere"><span class="mui-icon mui-icon-phone phonespan"></span>'+data[i]["driverphone"]+'</div></div></div>'
+							if(orderstatus != 1){
+								imghtml = '<div class="viewdetails"><div class="detailsleft"><div class="leftone"><div class="leftoneimg"></div></div><div class="lefttwo">'+data[i]["drivername"]+'（司机）</div></div><div class="detailsright"><div class="rightone">货物：'+data[i]["goodsname"]+'/'+data[i]["goodsnumber"]+'</div><div class="righttwo">价格：￥<span class="rmbspan">'+jiag+'</span>元</div><div class="rightthere"><span class="mui-icon mui-icon-phone phonespan"></span>'+data[i]["driverphone"]+'</div></div></div>'
+							}
+							var thishtml =  '<div class="orderdiv"><div class="hlinediv topdiv"><div class="leftpic"><span class="mui-icon iconfont icon-time"></span></div><div class="textdiv"><span>'+riqi+'</span></div><div class="rightpic">'+statusname+'<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div>'+buttonhtm+'</div></div><div class="hlinediv middlediv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">'+data[i]["startingplace"]+'</div></div><div class="middledivtext">'+data[i]["startingplace"]+'</div></div><div class="hlinediv footdiv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">'+data[i]["endplace"]+'</div></div><div class="middledivtext">'+data[i]["endplace"]+'</div><div class="textdivfoot ckmxdiv">查看明细<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div></div></div></div><div class="trianglediv"><div class="triangle-downs"></div></div>'+imghtml;
+							if(flag){							
+								$("#canceled").find(".mui-scroll").append(thishtml);
+								thishtml = "";
+							
+							}
+							showHtml =showHtml+thishtml;
+						}
+						
+						$(thisid).find(".mui-scroll").append(showHtml);  
+						if(data.length<pagesize){
+							havePage = false;
+						}else{
+							havePage = true;
+							
+						} 
+					}else{ 
+						$(thisid).find(".mui-scroll").append("");  
+					}
+				}else{
+					alertLoginMsg()
+					
+				}
+			})
+			
+		
+		}
+		
+		//更新之后在指定tap栏加入指定html
+		function setAddOrder(thisid,orderstatus,recid){ 
+			
+			$.post(allurl+"/getOrders",{loginId:huobang_loginId,orderstatus:orderstatus,recid:recid},function(data){
+				if(data != "wdl"){
+					//如果更新的是完成则需要弹出评价窗口
+					if(orderstatus == 3){
+						showStarsDriver(recid);
+					}
+					if(data.length > 0){
+						i=0;
+						var showHtml = "";
+						var buttonhtm = "";
+						if(orderstatus == "1"){
+							buttonhtm = '<div class="canceltoorder" recid="'+data[i]["recid"]+'">取消</div><div class="premium" recid="'+data[i]["recid"]+'" bargaining="'+data[i]["bargaining"]+'" >补价</div>';
+						}
+						 
+						for(var i=0;i<data.length;i++){
+							var statusname = data[i]["statusname"];
+							var jiag = data[i]["bargaining"].toFixed(2);
+							var riqi = data[i]["appointmenttime"];
+							if(orderstatus == 3){
+								buttonhtm = '<div class="tiptodriver" bargaining="'+data[i]["bargaining"]+'"  recid="'+data[i]["recid"]+'" driverrecid="'+data[i]["driverrecid"]+'" driverphone="'+data[i]["driverphone"]+'">发红包</div>'
+								if(data[i]["actualprice"] != ""){
+									jiag = data[i]["actualprice"].toFixed(2);
+								}else{
+									jiag = data[i]["bargaining"].toFixed(2);
+								}
+								
+								riqi = data[i]["endtime"];
+							}
+							var imghtml='<div class="viewdetails"><div class="detailsleft"><div class="leftone"></div></div><div class="detailsright" ><div class="rightone">货物：'+data[i]["goodsname"]+'/'+data[i]["goodsnumber"]+'</div><div class="righttwo">价格：￥<span class="rmbspan">'+jiag+'</span>元</div><div class="rightthere"><span class="mui-icon mui-icon-phone phonespan"></span>'+data[i]["userphone"]+'</div></div></div>'
+							var thishtml =  '<div class="orderdiv"><div class="hlinediv topdiv"><div class="leftpic"><span class="mui-icon iconfont icon-time"></span></div><div class="textdiv"><span>'+riqi+'</span></div><div class="rightpic">'+statusname+'<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div>'+buttonhtm+'</div></div><div class="hlinediv middlediv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">'+data[i]["startingplace"]+'</div></div><div class="middledivtext">'+data[i]["startingplace"]+'</div></div><div class="hlinediv footdiv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">'+data[i]["endplace"]+'</div></div><div class="middledivtext">'+data[i]["endplace"]+'</div><div class="textdivfoot ckmxdiv">查看明细<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div></div></div></div><div class="trianglediv"><div class="triangle-downs"></div></div>'+imghtml;
+						 showHtml = thishtml;
+						}
+						$(thisid).find(".mui-scroll").prepend(showHtml);  
+						mui.toast("提交成功！");
+					}
+				}else{
+					alertLoginMsg() 
+					
+				}
+			})
+			
+		 
+		
+		}
+		//删除订单
+		function deleteOrder(recid){
+			$(".canceltoorder").each(function(){
+				if($(this).attr("recid") == recid){
+					$(this).parent().parent().parent().next(".trianglediv").next(".viewdetails").remove();
+					$(this).parent().parent().parent().next(".trianglediv").remove();
+					$(this).parent().parent().parent().remove();
+					//$(this).parent().parent().parent().next(".trianglediv").remove().next(".viewdetails").remove();
+				}
+				
+			})
+		}
+		//添加评分
+		function showStarsDriver(recid){
+			layer.open({
+			 	shadeClose: false,
+			  	title: [
+		        '请给司机评分',
+		        'background-color: #FF7200; color:#fff;font-size:20px;'
+		    	]
+		   	 	,content: '<div class="stars"><div>司机评分（不评默认为五分）：</div> <div class="showstars"><i class="" score="1">★</i> <i class="" score="2">★</i> <i class="" score="3">★</i> <i class="" score="4">★</i> <i class="" score="5">★</i><div id="starsinput" style="display:none"></div></div></div>'
+		   	 	,btn: ['确认', '取消']
+		   	 	,yes: function(index){
+		   	 		
+		   	 		var orderScore = $("#starsinput").text();
+		   	 	 	$.post(allurl+"/updateOrder",{loginId:huobang_loginId,orderscoring:orderScore,recid:recid},function(data){
+						if(data != "wdl"){
+							if(data == "success"){
+								layer.close(index); 
+				   				mui.toast("评价成功！");
+							}else{
+								mui.toast("评价失败！");
+							}
+						}else{
+							alertLoginMsg() 
+							
+						}
+					})
+				    
+			    }
+		 	});
+		}
+	 	function clearAll(obj){
+            obj.parent().children('i').removeClass('on');
+        }
+	 	var userpayobj = new Object();
+		$(function(){
+			//为星星添加click事件
+			mui("body").on("tap",".stars i",function(){
+				var num = $(this).attr("score");
+                clearAll($(this));
+                //当前包括前面的元素都加上样式
+                $(this).addClass('on').prevAll('i').addClass('on');
+                $("#starsinput").text(num);
+			})
+			//查看详细
+			mui(".mui-content").on("tap",".ckmxdiv",function(){
+				$(this).parent().parent().next(".trianglediv").slideToggle().next(".viewdetails").slideToggle();
+				
+			})
+			//点击取消
+			mui("body").on("tap",".canceltoorder",function(){
+				var recid = $(this).attr("recid");
+				var jqobj = $(this);
+				var btnArray = ['否', '是'];
+				mui.confirm('你是否确认取消此订单？', '货帮', btnArray, function(e) {
+					
+					if (e.index == 1) {
+						updateOrder("#scroll3",recid,4,jqobj);
+					} 
+				})
+			})
+			//补价
+			
+			mui("body").on("tap",".premium",function(){
+				var recid = $(this).attr("recid");
+				var bargaining = $(this).attr("bargaining"); 
+				var jqobj = $(this);
+				var btnArray = ['否', '是'];
+				mui.confirm('你是否确认在此单补价？', '货帮', btnArray, function(e) {
+					
+					if (e.index == 1) {
+						var btnArray = ['取消', '确定'];
+						mui.prompt('请输入要补加的金额：', '元', '确认金额', btnArray, function(e) {
+							
+							if (e.index == 1) {
+								var re = /^[0-9]+.?[0-9]*$/;
+								if (!re.test(e.value)) {
+							　　　　alert("请输入数字");
+							　　　　return false;
+							　　}
+								var rmbs = parseFloat(e.value)
+								bargaining = bargaining*1+rmbs;
+								if(loginuser["havamoney"].toFixed(2)<rmbs){
+									UserPay("alipay",rmbs,"updatePremium",recid,bargaining,jqobj)
+								}else{
+									userpayobj["id"]="alipay";
+									userpayobj["rmbs"] = rmbs;
+									userpayobj["isway"] = "updatePremium";
+									userpayobj["recid"] = recid;
+									userpayobj["bargaining"] = bargaining;
+									userpayobj["jqobj"] = jqobj;
+									showBottomHtml();
+								}
+								
+								//updateOrder("#scroll2",recid,3,jqobj);
+							} 
+						})
+						
+					} 
+				})
+			})
+			//给红包
+			mui("body").on("tap",".tiptodriver",function(){
+				var recid = $(this).attr("recid");
+				var driverrecid = $(this).attr("driverrecid");
+				var driverphone = $(this).attr("driverphone");
+				var bargaining = $(this).attr("bargaining");
+				var jqobj = $(this);
+				var btnArray = ['否', '是'];
+				mui.confirm('你是否确认给此司机发送红包？', '货帮', btnArray, function(e) {
+					
+					if (e.index == 1) {
+						var btnArray = ['取消', '确定'];
+						mui.prompt('请输入红包的金额：', '元', '确认金额', btnArray, function(e) { 
+							
+							if (e.index == 1) {
+								var re = /^[0-9]+.?[0-9]*$/;
+								if (!re.test(e.value)) {
+							　　　　alert("请输入数字");
+							　　　　return false;
+							　　}
+								var rmbs = parseFloat(e.value)
+								bargaining = bargaining*1+rmbs;
+								if(loginuser["havamoney"].toFixed(2)<rmbs){
+									UserPay("alipay",rmbs,"updateTiptodriver",recid,bargaining,jqobj,driverrecid,driverphone)
+								}else{
+									userpayobj["id"]="alipay";
+									userpayobj["rmbs"] = rmbs;
+									userpayobj["isway"] = "updateTiptodriver";
+									userpayobj["recid"] = recid;
+									userpayobj["bargaining"] = bargaining;
+									userpayobj["jqobj"] = jqobj;
+									userpayobj["driverrecid"] = driverrecid;
+									userpayobj["driverphone"] = driverphone;
+									showBottomHtml();
+								}
+								
+								//updateOrder("#scroll2",recid,3,jqobj);
+							} 
+						})
+						
+					} 
+				})
+			});
+			//点击完成
+			mui("body").on("tap",".successtoorder",function(){
+				var recid = $(this).attr("recid");
+				var driverrecid = $(this).attr("driverrecid");
+				var driverphone = $(this).attr("driverphone");
+				var rmbs = $(this).attr("bargaining");
+				var jqobj = $(this);
+				successOrdershow(rmbs,"#scroll2",recid,3,jqobj,driverrecid,driverphone)
+				/*var btnArray = ['否', '是'];
+				mui.confirm('你是否确认完成此订单？', '货帮', btnArray, function(e) {
+					if (e.index == 1) {
+						var btnArray = ['取消', '确定'];
+						mui.prompt('请输入要支付的金额：', '元', '确认金额', btnArray, function(e) {
+							
+							if (e.index == 1) {
+								var re = /^[0-9]+.?[0-9]*$/;
+								if (!re.test(e.value)) {
+							　　　　alert("请输入数字");
+							　　　　return false;
+							　　}
+								var rmbs = parseFloat(e.value)
+								
+								UserPay("alipay",rmbs,"#scroll2",recid,3,jqobj,driverrecid,driverphone)
+								//updateOrder("#scroll2",recid,3,jqobj);
+							} 
+						})
+						
+					} 
+				})*/
+			})
+			//点击投诉
+			mui("body").on("tap",".complaint",function(){
+				var recid = $(this).attr("recid");
+				var driverrecid = $(this).attr("driverrecid");
+				var jqobj = $(this);
+				var btnArray = ['否', '是'];
+				mui.confirm('你是否确认投诉此订单？', '货帮', btnArray, function(e) {
+					if (e.index == 1) {
+						showComplaint(driverrecid,recid,jqobj);
+					} 
+				})
+			})
+			mui("body").on("tap","#zhifuqueren",function(){
+				var zhifuway = $(".openselect").find(".mui-selected").attr("id");
+				layer.closeAll();
+				if(zhifuway == "zhifubaozhifu"){
+					if(userpayobj["isway"] == "updateTiptodriver"){
+						UserPay(userpayobj["id"],userpayobj["rmbs"],userpayobj["isway"],userpayobj["recid"],userpayobj["bargaining"],userpayobj["jqobj"],userpayobj["driverrecid"],userpayobj["driverphone"]);
+					}else{
+						UserPay(userpayobj["id"],userpayobj["rmbs"],userpayobj["isway"],userpayobj["recid"],userpayobj["bargaining"],userpayobj["jqobj"]);
+					}
+					
+				}else{
+					//Yuepay
+					if(userpayobj["isway"] == "updateTiptodriver"){
+						Yuepay(userpayobj["id"],userpayobj["rmbs"],userpayobj["isway"],userpayobj["recid"],userpayobj["bargaining"],userpayobj["jqobj"],userpayobj["driverrecid"],userpayobj["driverphone"]);
+					}else{
+						Yuepay(userpayobj["id"],userpayobj["rmbs"],userpayobj["isway"],userpayobj["recid"],userpayobj["bargaining"],userpayobj["jqobj"]);
+					}
+				}
+			})
+		})
+		
+		//添加投诉内容
+		function showComplaint(driverrecid,recid,jqobj){
+			
+			layer.open({
+			 	shadeClose: false,
+			  	title: [
+		        '投诉',
+		        'background-color: #FF7200; color:#fff;font-size:20px;'
+		    	]
+		   	 	,content: '<div class="complaintdiv"> <div class="complaintdivs"><textarea rows="4" placeholder="请填写订单问题~" id="complaintText" maxlength="240"></textarea></div></div>'
+		   	 	,btn: ['确认', '取消']
+		   	 	,yes: function(index){
+		   	 		plus.nativeUI.showWaiting("加载中");
+		   	 		var complaintText = $("#complaintText").val();
+		   	 	 	$.post(allurl+"/updateOrder",{loginId:huobang_loginId,orderstatus:5,recid:recid},function(data){
+						if(data != "wdl"){
+							if(data == "success"){
+								//console.log(jqobj.parent().parent().parent().html());
+								jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").remove();
+								jqobj.parent().parent().parent().next(".trianglediv").remove();
+								jqobj.parent().parent().parent().remove();
+								//jqobj.parent().parent().parent().next(".trianglediv").remove().next(".viewdetails").remove();
+								insertOrderProblem(driverrecid,recid,complaintText); 
+								
+							}else{ 
+								mui.toast("提交失败！");
+							}
+						}else{
+							alertLoginMsg() 
+							
+						}
+					})
+				    
+			    }
+		 	});
+		}
+		//更新订单状态并删除当前tap的订单
+		function updateOrder(thisid,recid,orderstatus,jqobj){
+			plus.nativeUI.showWaiting("加载中");
+			$.post(allurl+"/updateOrder",{loginId:huobang_loginId,orderstatus:orderstatus,recid:recid},function(data){
+				if(data != "wdl"){
+					if(data == "success"){
+						//console.log(jqobj.parent().parent().parent().html());
+						jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").remove();
+						jqobj.parent().parent().parent().next(".trianglediv").remove();
+						jqobj.parent().parent().parent().remove();
+						
+						//jqobj.parent().parent().parent().next(".trianglediv").remove().next(".viewdetails").remove();						
+						setAddOrder(thisid,orderstatus,recid)
+						plus.nativeUI.closeWaiting();
+					}else{
+						mui.toast("提交失败！");
+					}
+				}else{
+					alertLoginMsg() 
+					
+				}
+			})
+		}
+		//更新订单状态并删除当前tap的订单
+		function updateOrderThree(thisid,recid,orderstatus,jqobj,actualprice){
+			plus.nativeUI.showWaiting("加载中");
+			$.post(allurl+"/updateOrder",{loginId:huobang_loginId,orderstatus:orderstatus,recid:recid,actualprice:actualprice},function(data){
+				if(data != "wdl"){
+					if(data == "success"){
+						//console.log(jqobj.parent().parent().parent().html());
+						
+						//alert(jqobj.parent().parent().parent().attr("class"))
+						jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").remove();
+						jqobj.parent().parent().parent().next(".trianglediv").remove();
+						
+						jqobj.parent().parent().parent().remove();
+						setAddOrder(thisid,orderstatus,recid)
+						plus.nativeUI.closeWaiting();
+					}else{
+						mui.toast("提交失败！");
+					}
+				}else{
+					alertLoginMsg() 
+					
+				}
+			})
+		}
+		//保存订单问题
+		function insertOrderProblem(driverrecid,orderrecid,content){
+			$.post(allurl+"/saveOrderProblem",{loginId:huobang_loginId,orderrecid:orderrecid,driverrecid:driverrecid,userrecid:loginuser["recid"],isreading:0,content:content,createtime:formatTime(new Date())},function(data){
+				if(data != "wdl"){
+					if(data != ""){
+						var orderProblem = plus.webview.getWebviewById('orderProblem');
+						if(orderProblem != null){
+							orderProblem.evalJS("setFeedBackHtml();"); 	
+						}
+						
+						mui.toast("提交成功！");
+						
+					}else{
+						mui.toast("提交失败！");
+					}
+				}else{
+					alertLoginMsg() 
+					
+				}
+				plus.nativeUI.closeWaiting();
+				layer.closeAll();
+			})
+		}
+		;(function($) {
+			
+			$('.mui-scroll-wrapper').scroll({
+				indicators: true //是否显示滚动条
+			});
+			/*var html2 = '<div class="orderdiv"><div class="hlinediv topdiv"><div class="leftpic"><span class="mui-icon iconfont icon-time"></span></div><div class="textdiv"><span>09月01日</span> <span style="margin-left:10px">13:00</span></div><div class="rightpic">已完成<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div></div></div><div class="hlinediv middlediv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">青岛金石国际广场</div></div><div class="middledivtext">傲海星城</div></div><div class="hlinediv footdiv"><div class="middledivtop"><div class="middledivtoppic"><span class="mui-icon iconfont icon-icon010"></span></div><div class="middledivtoptext">傲海星城</div></div><div class="middledivtext">傲海星城<div class="textdivfoot">查看明细<div class="picspan"><span class="mui-icon mui-icon-arrowright"></span></div></div></div></div></div><div class="trianglediv"><div class="triangle-downs"></div></div><div class="viewdetails"><div class="detailsleft"><div class="leftone"><div class="leftoneimg"></div></div><div class="lefttwo">王某某（货主）</div></div><div class="detailsright"><div class="rightone">啤酒/80吨/15米/锡纸</div><div class="righttwo">价格：￥<span class="rmbspan">9999.00</span>元</div><div class="rightthere"><span class="mui-icon mui-icon-phone phonespan"></span>拨打电话</div></div></div>';*/
+			var item1 = document.getElementById("haveinhand")
+			var item2 = document.getElementById('completed');
+			var item3 = document.getElementById('canceled');
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				if (e.detail.slideNumber === 2) {
+					
+					if (item2.querySelector('.mui-loading')) {
+						item2.querySelector(".mui-scroll").innerHTML = "";
+						setOrderShowHtml("#completed",3,pagesize,currpage)
+					}
+				} else if (e.detail.slideNumber === 3) {
+					if (item3.querySelector('.mui-loading')) {
+						item3.querySelector(".mui-loading").remove(); 
+						setOrderShowHtml("#canceled",4,1000,1)
+					}
+				}else if(e.detail.slideNumber === 1){
+					//item1.querySelector(".mui-scroll").innerHTML = "";
+					//setOrderShowHtml("#haveinhand",2,1000,1)
+					if (item1.querySelector('.mui-loading')) {
+						item1.querySelector(".mui-scroll").innerHTML = "";
+						setOrderShowHtml("#haveinhand",2,1000,1)
+					}
+				}else if(e.detail.slideNumber === 0){
+					//item1.querySelector(".mui-scroll").innerHTML = "";
+					//setOrderShowHtml("#haveinhand",2,1000,1)
+				}
+			});
+			
+			
+			$.ready(function() {
+				$('#mui-scroll2').pullToRefresh({
+					up: {  
+						offset: 5, 
+						contentinit: '',
+					    contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+					    contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							var self = this;
+							if(havePage){
+								currpage = currpage+1;
+								setOrderShowHtml("#completed",3,pagesize,currpage);
+								self.endPullUpToRefresh(false);
+							}else{
+								self.endPullUpToRefresh(true);
+							}
+								
+								
+						}
+					}
+				});
+			});
+				
+		})(mui);
+		//格式化时间
+function formatTime(_time){
+    var year = _time.getFullYear();
+    var month = _time.getMonth()+1<10 ? "0"+(_time.getMonth()+1) : _time.getMonth()+1;
+    var day = _time.getDate()<10 ? "0"+_time.getDate() : _time.getDate();
+    var hour = _time.getHours()<10 ? "0"+_time.getHours() : _time.getHours();
+    var minute = _time.getMinutes()<10 ? "0"+_time.getMinutes() : _time.getMinutes();
+    var miao = _time.getSeconds()<10 ? "0"+_time.getSeconds() : _time.getSeconds();
+    return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+miao;
+}
+// 检测是否安装支付服务
+function checkServices(pc){
+	if(!pc.serviceReady){
+		var txt=null;
+		switch(pc.id){
+			case 'alipay':
+			txt='检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+			break;
+			default:
+			txt='系统未安装“'+pc.description+'”服务，无法完成支付，是否立即安装？';
+			break;
+		}
+		plus.nativeUI.confirm(txt, function(e){
+			if(e.index==0){
+				pc.installService();
+			}
+		}, pc.description);
+	}
+}
+
+//余额支付
+function Yuepay(id,total,isway,recid,bargaining,jqobj,driverrecid,driverphone){
+	var havamoney = (loginuser["havamoney"]*1)-(total*1)
+	mui.ajax({
+
+		url: allurl+"/updateUser",
+		data:{
+				loginId:huobang_loginId,
+				recid:loginuser["recid"],
+				havamoney:havamoney
+
+			},
+		type: "post",
+		 
+		success: function(data) {
+			if(data == "wdl"){
+				alertLoginMsg()
+			}else if(data.toString() == "success"){
+				mui.toast("付款成功");
+				loginuser["havamoney"] = havamoney; 
+				localStorage.setItem("huobang_login_user",JSON.stringify(loginuser));
+				var myWallet = plus.webview.getWebviewById('myWallet');
+				myWallet.evalJS('setJiage('+havamoney+')')
+				if(isway == "updatePremium"){					
+						mui.ajax({
+		
+							url: allurl+"/updateOrder",
+							data:{
+									loginId:huobang_loginId,
+									recid:recid,
+									bargaining:bargaining,
+									premium:total
+
+								},
+							type: "post",
+							 
+							success: function(data) {
+								if(data == "wdl"){
+									alertLoginMsg()
+								}else if(data.toString() == "success"){
+									jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").find(".rmbspan").text(bargaining.toFixed(2));
+									successChaRu(total,recid,driverrecid);
+								}
+							},
+							error: function(xhr, type, errorThrown) { 
+								alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+								
+								console.log(errorThrown);
+							}
+						
+						})
+					
+				
+					}else if(isway == "updateTiptodriver"){
+						mui.ajax({
+		
+							url: allurl+"/updateOrder",
+							data:{
+									loginId:huobang_loginId,
+									recid:recid,
+									bargaining:bargaining,
+									actualprice:total
+
+								},
+							type: "post",
+							 
+							success: function(data) {
+								if(data == "wdl"){
+									alertLoginMsg()
+								}else if(data.toString() == "success"){
+									jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").find(".rmbspan").text(bargaining.toFixed(2));
+									successOrdershow(total,"tiptodriver",recid,0,jqobj,driverrecid,driverphone)
+									
+								}
+							},
+							error: function(xhr, type, errorThrown) { 
+								alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+								
+								console.log(errorThrown);
+							}
+						
+						})
+					}
+
+			}
+		},
+		error: function(xhr, type, errorThrown) { 
+			alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+			
+			console.log(errorThrown);
+		}
+	
+	})
+}
+//支付宝支付"alipay",rmbs,"updatePremium",recid,bargaining
+var waits=null;
+function UserPay(id,total,isway,recid,bargaining,jqobj,driverrecid,driverphone){
+	if(waits){return;}//检查是否请求订单中
+	if(id==='appleiap'){
+		clicked('payment_iap.html');
+		return;
+	}
+	var url=huobang_alipayurl;
+	if(id=='alipay'||id=='wxpay'){
+		url+=id;
+	}else{
+		plus.nativeUI.alert('当前环境不支持此支付通道！', null, '交钱');
+		return;
+	}
+	var appid=plus.runtime.appid;
+	if(navigator.userAgent.indexOf('StreamApp')>=0){
+		appid='Stream';
+	}
+	url+='&appid='+appid+'&total=';
+	waits=plus.nativeUI.showWaiting();
+	// 请求支付订单
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		switch(xhr.readyState){
+			case 4:
+			waits.close();waits=null;
+			if(xhr.status==200){
+
+				var order=xhr.responseText;
+				plus.payment.request(alipay,order,function(result){
+					if(isway == "updatePremium"){					
+						mui.ajax({
+		
+							url: allurl+"/updateOrder",
+							data:{
+									loginId:huobang_loginId,
+									recid:recid,
+									bargaining:bargaining,
+									premium:total
+
+								},
+							type: "post",
+							 
+							success: function(data) {
+								if(data == "wdl"){
+									alertLoginMsg()
+								}else if(data.toString() == "success"){
+									jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").find(".rmbspan").text(bargaining.toFixed(2));
+									successChaRu(total,recid,driverrecid);
+								}
+							},
+							error: function(xhr, type, errorThrown) { 
+								alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+								
+								console.log(errorThrown);
+							}
+						
+						})
+					
+				
+					}else if(isway == "updateTiptodriver"){
+						mui.ajax({
+		
+							url: allurl+"/updateOrder",
+							data:{
+									loginId:huobang_loginId,
+									recid:recid,
+									bargaining:bargaining,
+									actualprice:total
+
+								},
+							type: "post",
+							 
+							success: function(data) {
+								if(data == "wdl"){
+									alertLoginMsg()
+								}else if(data.toString() == "success"){
+									jqobj.parent().parent().parent().next(".trianglediv").next(".viewdetails").find(".rmbspan").text(bargaining.toFixed(2));
+									successOrdershow(total,"tiptodriver",recid,0,jqobj,driverrecid,driverphone)
+									
+								}
+							},
+							error: function(xhr, type, errorThrown) { 
+								alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+								
+								console.log(errorThrown);
+							}
+						
+						})
+					}
+				},function(e){
+					//updateOrder(thisid,recid,index,jqobj);
+					plus.nativeUI.alert('取消订单或网络问题', null, '支付失败');
+				});
+			}else{
+				plus.nativeUI.alert('获取订单信息失败！', null, '支付');
+			}
+			break;
+			default:
+			break;
+		}
+	}
+	xhr.open('GET',url+total);
+	xhr.send();
+}
+//补价插入消费流水表
+function successChaRu(total,recid,driverrecid){
+		mui.ajax({
+	
+			url: allurl+"/saveUserFlow",
+			data:{
+					loginId:huobang_loginId,
+					userrecid:loginuser["recid"],
+					consumptionamount:total,
+					orderrecid:recid,
+					createtime:formatTime(new Date()),
+					istype:2
+					
+				},
+			type: "post",
+			 
+			success: function(data) {
+				if(data == "wdl"){
+					alertLoginMsg()
+				}else if(data.toString() != ""){
+					mui.toast("补价成功！");
+					
+					//back();
+				}
+			},
+			error: function(xhr, type, errorThrown) { 
+				mui.toast("支付成功,因为其他错误未通知到司机")
+				
+				console.log(errorThrown);
+			}
+		
+		})
+		
+	
+}
+//完成订单
+function successOrdershow(total,thisid,recid,index,jqobj,driverrecid,driverphone){
+	
+					
+	mui.ajax({
+	
+		url: allurl+"/UpdateDriverMoney",
+		data:{
+				loginId:huobang_loginId,
+				driverrecid:driverrecid,
+				UpdateNum:total
+			},
+		type: "post",
+		 
+		success: function(data) {
+			var istype = 3;
+			if(thisid=="tiptodriver"){
+				istype = 4;
+			}
+			if(data == "wdl"){
+				alert("你支付完成后，账号在其他手机登录，请申诉此单，以免造成不必要的损失。")
+			}else if(data.toString() == "true"){
+				mui.ajax({
+	
+					url: allurl+"/saveUserFlow",
+					data:{
+							loginId:huobang_loginId,
+							userrecid:loginuser["recid"],
+							driverrecid:driverrecid,
+							consumptionamount:total,
+							orderrecid:recid,
+							createtime:formatTime(new Date()),
+							istype:istype
+						},
+					type: "post",
+					 
+					success: function(data) {
+						if(data == "wdl"){
+							alertLoginMsg()
+						}else if(data.toString() != ""){
+							if(thisid=="tiptodriver"){
+								mui.toast("发红包成功！");
+								var msgobj = new Object();
+								msgobj["showmsg"] = loginuser["loginname"]+"发你红包，共"+total+"元";
+								msgobj["orderrecid"] = recid;
+								$.post(allurl+"/toMpSend",{username:driverphone,msg:JSON.stringify(msgobj),loginId:huobang_loginId,msgtype:0},function(data){
+									if(data == "wdl"){
+										alertLoginMsg()
+									}
+								});
+							}else{
+								updateOrderThree(thisid,recid,index,jqobj,total);
+								var msgobj = new Object();
+								msgobj["showmsg"] = recid+"单已完成，共支付金额"+total+"元";
+								msgobj["orderrecid"] = recid;
+								$.post(allurl+"/toMpSend",{username:driverphone,msg:JSON.stringify(msgobj),loginId:huobang_loginId,msgtype:0},function(data){
+									if(data == "wdl"){
+										alertLoginMsg()
+									}
+								});
+							}
+							
+							//back();
+						}
+					},
+					error: function(xhr, type, errorThrown) { 
+						mui.toast("支付成功,因为其他错误未通知到司机")
+						
+						console.log(errorThrown);
+					}
+				
+				})
+				
+			}
+		},
+		error: function(xhr, type, errorThrown) { 
+			alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+			
+			console.log(errorThrown);
+		}
+	
+	})
+						
+					
+				
+}
+
+function showBottomHtml(){
+	  layer.open({
+	    type: 1
+	    ,content: '<ul class="mui-table-view mui-table-view-radio openselect" ><li class="mui-table-view-cell" id="zhifubaozhifu"><a class="mui-navigate-right">支付宝</a></li><li class="mui-table-view-cell mui-selected" id="yuezhif" ><a class="mui-navigate-right">余额('+loginuser["havamoney"].toFixed(2)+')</a></li></ul><button type="button" class="mui-btn mui-btn-success mui-btn-block" id="zhifuqueren">确定</button>'
+	    ,anim: 'up'
+	    ,style: 'position:fixed; bottom:0; left:0; width: 100%; border:none;'
+	  });
+}
+	</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="HandheldFriendly" content="true"/>
+		<meta name="MobileOptimized" content="320"/>
+		<title>Hello H5+</title>
+		<link rel="stylesheet" href="../../css/alert.css" />
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<script type="text/javascript" src="../../js/common.js"></script>
+	</head>
+	<body style="margin:0;padding:0;width:100%;height:100%;text-align:center;">
+		<div class="hintl">
+				<div class="hintl-in1">
+					
+					<div class="hintl2">货帮-提示</div>
+					
+				</div>
+				<div class="hintl-in2">
+					<div id="content">开始抢单了！</div>
+				</div>
+				<div class="hintl-in3"  id="button">抢单</div>
+				<div class="hintl-in4" onclick="back()">返回</div>
+		</div>
+		<script type="text/javascript" src="../../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script>
+			mui.init();
+			mui.plusReady(function(){
+				var WebSocket = plus.webview.getWebviewById("WebSocket");
+				var jsonobj = JSON.parse(WebSocket.data);
+				if(jsonobj.msgtype == "0"){  
+					showData(jsonobj.msg);
+					 
+				} 
+			})
+			function showData(msgobj){ 
+				if(msgobj.hasOwnProperty("showmsg")){
+					console.log(JSON.stringify(msgobj))
+					document.getElementById("content").innerHTML =  msgobj.showmsg;
+					document.getElementById("button").style.display = "none";
+					var ordershow = plus.webview.getWebviewById("ordershow.html");
+					ordershow.evalJS('setOrderShowHtml("#haveinhand",2,1000,1)') ;
+					ordershow.evalJS('deleteOrder('+msgobj.orderrecid+')') ;
+				}else{
+					document.getElementById("content").innerHTML =  msgobj;
+					document.getElementById("button").style.display = "none";
+				}
+				
+			}
+		</script>
+	</body>
+</html> 

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<style>
+		body,html{
+			width:100%;
+			height:100%;
+			
+		}
+		.headcount{
+			background-color:rgb(255,114,0)
+		} 
+		.mui-content{
+			height: 100%;
+		}
+		#gaode{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+	<body>
+		<script src="../../js/mui.min.js"></script>
+		<header class="mui-bar mui-bar-nav headcount">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<h1 class="mui-title" style="color: white;">选择位置</h1>
+		</header>
+		<div class="mui-content">
+			<iframe  id="gaode">
+				
+			</iframe>
+		</div>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				setIframeHtml();
+			});
+			var addressXinx = new Object();
+			function setIframeHtml(){
+				var xuanzhi = plus.webview.getWebviewById('xuanzhi');
+				var currlongitude,currlatitude;
+				addressXinx["thismethod"] = gaode.thismethod;
+				if(xuanzhi.longitude!=null && xuanzhi.longitude!=""){
+					currlongitude = xuanzhi.longitude;
+					currlatitude = xuanzhi.latitude;
+				}else{
+					currlongitude = 116.23
+					currlatitude = 39.54
+					mui.toast("获取定位失败！")
+				}
+				var https = "https://m.amap.com/picker/?keywords=小区&zoom=13&center="+currlongitude+","+currlatitude+"&radius=1000&amp;total=20&key=9815e12d508f5fe4bd44aa69fdc3054c";
+				$("#gaode").attr("src",https);
+			}
+			(function(){
+			    var iframe = document.getElementById('gaode').contentWindow;
+			    document.getElementById('gaode').onload = function(){
+			      iframe.postMessage('hello','https://m.amap.com/picker/');
+			    };
+			    window.addEventListener("message", function(e){
+			     // alert('您选择了:' + e.data.name + ',' + e.data.location)
+			      var point = e.data.location.split(",");
+			      addressXinx["longitude"] = point[0];
+				  addressXinx["latitude"] = point[1];
+				  //console.log(JSON.stringify(e.data))
+			      addressXinx["dizhi"] = e.data.address;
+			      addressXinx["name"] = e.data.name;
+			      var MainShow = plus.webview.getWebviewById('MainShow.html');	
+					MainShow.evalJS("setStartPlace('"+JSON.stringify(addressXinx)+"');") 
+					mui.back();
+			    }, false);
+			}())
+		</script>
+	</body>
+
+</html>

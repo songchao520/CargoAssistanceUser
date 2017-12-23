@@ -1,0 +1,140 @@
+<!--
+	作者：宋超
+	时间：2016-07-05
+	描述：APP入口
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>入口页面</title>
+		<script type="text/javascript" src="js/systemConfig.js" ></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+	</head>
+ 
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			/**
+			 * 该页面作为空白的入口页面
+			 * 其意义在于，我们可以在这个页面进行一些隐式的操作
+			 * 例如：判定用户是否第一次登录，来跳转至引导页或直接进入APP；
+			 * 从本地存储中获取用户信息，进行用户的自动登录；
+			 * 在该页面判定完成后，跳转的目标页面，我们可以手动关闭启动界面，用户是看不到这个空白页的；
+			 */
+			mui.init();
+			var showMenu = false;
+			
+			mui.plusReady(function() {
+				//显示启动导航
+				//localStorage.removeItem("huobang_login_user");
+				if(localStorage.getItem("huobang_user_show")==null){
+					localStorage.setItem("huobang_user_show","show");
+					mui.openWindow({
+						url: "html/base/show.html",
+						id: "show",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: 'none'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}else if(localStorage.getItem("huobang_login_user")!=null){
+					mui.ajax({
+						url: allurl+"/loginVerification",
+						data:{
+								loginname:loginuser["loginname"],
+								loginpassword:loginuser["loginpassword"]
+							},
+						type: "post",
+						 
+						success: function(data) {
+							if(data != "error"){
+								localStorage.setItem("huobang_loginId_user",data);
+								mui.ajax({
+									url: allurl+"/getUsers",
+									data:{
+										loginId:data,loginname:loginuser["loginname"],utyperecid:4
+									},
+									type: "post",
+									success: function(datas){
+									//datas[0]["loginpassword"] = "";
+									//console.log(JSON.stringify(datas[0]));
+									localStorage.setItem("huobang_login_user",JSON.stringify(datas[0]));
+									mui.toast("登录成功");
+									mui.openWindow({
+						                url: "html/main/main.html",
+						                id: "main",
+										styles: {
+											popGesture: "none"
+										},
+										show: {
+											aniShow: "pop-in"
+										},
+										waiting: {
+											autoShow: false
+										}
+								    });
+								   }
+								})
+								
+								//plus.storage.setItem("username", username);
+								
+							}else{
+								mui.toast("用户名密码不正确");
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							mui.toast("网络及其他原因");
+							
+							console.log(errorThrown);
+						}
+					});
+				
+				}else{
+					mui.openWindow({
+						url: "html/base/login.html",
+						id: "login",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: 'none'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
+				
+			});
+			 //处理逻辑：1秒内，连续两次按返回键，则退出应用；
+			var first = null;
+			mui.back = function() {
+				if (showMenu) {
+					closeMenu();
+				} else {
+					//首次按键，提示‘再按一次退出应用’
+					if (!first) {
+						first = new Date().getTime();
+						mui.toast('再按一次退出应用');
+						setTimeout(function() {
+							first = null;
+						}, 1000);
+					} else {
+						if (new Date().getTime() - first < 1000) {
+							plus.runtime.quit();
+						}
+					}
+				}
+			};
+		</script>
+	</body>
+
+</html>

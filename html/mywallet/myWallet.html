@@ -1,0 +1,205 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：我的钱包
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body
+			{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+				
+			}
+
+			.hlinediv{
+				height: 50px;
+				width: 100%;
+				float: left;
+				line-height: 50px;
+				background-color: #FFFFFF;
+				border-bottom:1px solid #CCCCCC;
+			}
+			.picdiv{
+				width: 15%;
+				float: left;
+				height: 100%;
+				text-align: right;
+			}
+			.textdiv{
+				width: 85%;
+				float: left;
+				height: 100%;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.picimg{
+				width:25px;
+				margin-top: 10px;
+			}
+			.textdivs{
+				width: 79%;
+				float: left;
+				height: 100%;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.withdrawals{
+				margin-top: 10px
+			}
+			.balance{
+				float: left;
+				width: 96%;
+				margin-left: 2%;
+				background-color: #FFFFFF;
+				border: 1px solid #CCCCCC;
+				margin-top: 5px;
+				color: #FF7200;
+				text-indent: 2em;
+			}
+			.titlediv{
+				height: 80px;
+				line-height: 80px;
+				font-size: 14px;
+				
+				
+			}
+			.jiagediv{
+				height: 60px;
+				font-size: 18px;
+				font-weight: 400;
+
+			}
+			.jiagediv span{
+				font-size: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">我的钱包</h1>
+				
+		</header>
+		<div class="contentdiv mui-content">
+			<div class="balance">
+				<div class="titlediv">
+					可用余额：
+				</div>
+				<div class="jiagediv">
+					￥<span id="jiagspan">0.00</span>
+				</div>
+			</div>
+			
+			<div class="hlinediv withdrawals">
+				<div class="picdiv">
+					<img src="../../img/qb@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					充值
+				</div>
+			</div>
+			<!--<div class="hlinediv bankcard">
+				
+				<div class="picdiv">
+					<img src="../../img/yhk@3x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					银行卡信息
+				</div>
+			</div>-->
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../../js/layer_mobile/layer.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				},
+				preloadPages:[
+				{
+					url:"Recharge.html",
+		            id: "Recharge",
+				},{
+					url:"bankCard.html",
+		            id: "bankCard",
+				}]
+			});
+			function setJiage(jiag){
+				$("#jiagspan").text(jiag.toFixed(2)); 
+			}
+			mui.plusReady(function() {
+				if(loginuser["havamoney"]!=""){
+					document.getElementById("jiagspan").innerText = loginuser["havamoney"].toFixed(2);
+				}
+				
+			});
+
+			$(function(){
+				
+				mui(".contentdiv").on("tap",".withdrawals",function(){
+					var jiag = $("#jiagspan").text();
+					var myWallet = plus.webview.getWebviewById('Recharge');
+					myWallet.evalJS('setJiage('+jiag+')')
+					mui.openWindow({
+		                id: "Recharge",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".bankcard",function(){
+					mui.openWindow({
+		                id: "bankCard",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

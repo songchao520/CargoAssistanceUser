@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.textTitle{
+				text-align: center;
+				padding-top: 10px;
+			}
+			.neirong p{
+				width: 90%;
+				margin-left: 5%;
+			}
+			.textimg img{
+				width: 80%;
+				margin-left: 10%;
+			}
+			.sjce{
+				text-align: center;
+			}
+		</style>
+	</head>
+		
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+				<span style="font-size: 15px;"></span>
+			</a>
+			<h1 class="mui-title" style="color: #FFFFFF;">图文</h1>
+			
+			
+		</header>
+		<div class="mui-content">
+			<div class="textTitle" id="title">
+				货运不景气，三千万货车该何去何从
+			</div>
+			<p class="sjce" id="author">
+				货物信息化
+			</p>
+			<p class="sjce" id="createtime">
+				2017-12-10
+			</p>
+			<div class="textimg" id="relevanting">
+				<img src="../../img/banner.jpg">
+			</div>
+			<div class="neirong" id="content">
+				<p>
+					
+				</p>
+
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			})
+			mui.plusReady(function(){
+				setGraphicDetailsHtml();
+			});
+			function setGraphicDetailsHtml(){
+				var graphicdetails = plus.webview.getWebviewById('graphicdetails');
+				var notice =JSON.parse(graphicdetails.notice);
+				$("#title").html(notice.title);
+				$("#author").html(notice.author);
+				$("#createtime").html(notice.createtime);
+												console.log(allurl+notice.relevanting) 
+				$("#relevanting").children("img")[0].src = allurl+notice.relevanting;
+				$("#content p").html(notice.content);
+			}
+		</script>
+	</body>
+
+</html>

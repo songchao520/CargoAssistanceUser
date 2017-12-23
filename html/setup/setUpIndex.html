@@ -1,0 +1,286 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：设置
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body
+			{
+				background:rgb(238,238,238);
+				font-size: 14px;
+				
+			}
+			.hlinediv{
+				height: 50px;
+				width: 100%;
+				float: left;
+				line-height: 50px;
+				background-color: #FFFFFF;
+			}
+			.picdiv{
+				width: 15%;
+				float: left;
+				height: 100%;
+				text-align: right;
+			}
+			.textdiv{
+				width: 85%;
+				float: left;
+				height: 100%;
+				border-bottom:1px solid #EAE7EC;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.toshare .textdiv{
+				border: 0px;
+			}
+			.picimg{
+				width:25px;
+				margin-top: 10px;
+			}
+			.textdivs{
+				width: 79%;
+				float: left;
+				height: 100%;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.aboutus{
+				margin-top:10px ;
+				border-top: 1.5px #EAE7EC solid;
+				border-bottom: 1px #DCDCDC solid;
+				
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.circye{
+				width: 20%;
+				margin-left: 10%;
+				text-align: center;
+				float: left;
+				padding-top: 10px;
+				color: #999;
+			}
+			.circye img{
+				width: 50px;
+			}
+			.circyediv{
+				width: 100%;
+				float: left;
+			}
+			.cancelbutton{
+				margin-top: 10px;
+				border-top: 1px #CCCCCC solid;
+				text-align: center;
+				width: 100%;
+				float: left;
+				height: 40px;
+				line-height: 55px;
+				font-size: 18px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">设置</h1>
+				
+		</header>
+		<div class="contentdiv mui-content">
+			
+			<div class="hlinediv usercode">
+				<div class="picdiv">
+					<img src="../../img/shouze@3x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					用户守则
+				</div>
+			</div>
+			<!--          
+			<div class="hlinediv tollstandard">
+				<div class="picdiv">
+					<img src="../../img/shoufeibiaozhun@3x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					收费标准
+				</div>
+			</div>
+			 -->
+			<div class="hlinediv toshare">
+				<div class="picdiv">
+					<img src="../../img/fenxiang@3x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					分享
+				</div>
+			</div>
+
+			<div class="hlinediv aboutus">
+				<div class="picdiv" style="margin-left: 6%;">
+					<img src="../../img/guanyuhuobang@2x.png" class="picimg" style="width: 45px;padding-top: 5px;" />
+				</div>
+				<div class="textdivs">
+					关于货帮
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../../js/layer_mobile/layer.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				}
+			});
+			mui.plusReady(function() {});
+
+			$(function(){
+				
+				mui(".contentdiv").on("tap",".usercode",function(){
+					mui.openWindow({
+						url:"userCode.html",
+		                id: "userCode",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".aboutus",function(){
+					mui.openWindow({
+						url:"aboutUs.html",
+		                id: "aboutUs",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".tollstandard",function(){
+					mui.openWindow({
+						url:"tollstandard.html",
+		                id: "tollstandard",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".toshare",function(){
+					shareSystem();
+					/*var contenthtml = '<div><div class="circyediv"><div class="circye"><img src="../../img/weixinfenxiang@3x.png"><div>微信好友</div></div><div class="circye"><img src="../../img/pengyouquan@3x.png"><div>朋友圈</div></div><div class="circye"><img src="../../img/qqhaoyou@3x.png"><div>QQ</div></div></div><div class="circyediv"><div class="circye"><img src="../../img/qqkongjian@3x.png"><div>QQ空间</div></div></div><div class="cancelbutton">取消</div></div>';
+					  //页面层
+				 	layer.open({
+				    	type: 1
+				    	,content: contenthtml
+				    	,anim: 'up'
+				    	,style: 'position:fixed; bottom:0; left:0; width: 100%;padding:10px 0; border:none;'
+				 	});*/
+				 	
+				})
+				
+				mui("body").on("tap",".cancelbutton",function(){
+					plus.share.getServices(function(ss) {
+						shares = ss;
+					   	ss[2].send("22", function(){
+					        alert( "分享到\""+ss[2].description+"\"成功！ " );
+					    }, function(e){
+					        alert( "分享到\""+ss[2].description+"\"失败: "+e.code+" - "+e.message );
+					    })
+					}, function(e) {
+					    alert("获取分享服务列表失败：" + e.message);
+					})
+					layer.closeAll();
+				})
+				
+			});
+			
+			/**
+ * 调用系统分享
+  */
+
+function shareSystem(){
+	var msg={content:"http://192.168.0.155:8020/CargoA/login.html"};
+	
+	plus.share.sendWithSystem?plus.share.sendWithSystem(msg, function(){
+		//outLine('Success');
+		console.log('Success');
+	}, function(e){
+		//outLine('Failed: '+JSON.stringify(e));
+		console.log('Failed: '+JSON.stringify(e));
+	}):shareSystemNativeJS();
+}
+function shareSystemNativeJS() {
+	if(plus.os.name!=='Android'){
+		plus.nativeUI.alert('此平台暂不支持系统分享功能!');
+		return;
+	}
+	var intent=new Intent(Intent.ACTION_SEND);
+	if(pic&&pic.realUrl){
+		var p = '';
+		p = pic.realUrl;
+		if(p.substr(0,7)==='file://'){
+			p=p.substr(7);
+		}else if(p.sub(0)!=='/'){
+			p=plus.io.convertLocalFileSystemURL(p);
+		}
+	}
+	var f = new File(p);
+	var uri = Uri.fromFile(f);
+	if(f.exists()&&f.isFile()){
+		console.log('image/*');
+		intent.setType('image/*');
+		intent.putExtra(Intent.EXTRA_STREAM,uri);
+	}else{
+		console.log('text/plain');
+		intent.setType('text/plain');
+	}
+	intent.putExtra(Intent.EXTRA_SUBJECT,'货帮');
+	intent.putExtra(Intent.EXTRA_TEXT,"货帮");
+	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	main.startActivity(Intent.createChooser(intent,'货帮分享'));
+}
+			
+		</script>
+	</body>
+
+</html>

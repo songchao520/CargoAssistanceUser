@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link href="../../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../../css/mui.poppicker.css" rel="stylesheet" />
+		<title></title>
+		<style>
+			body
+			{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+				
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.titlediv{
+				float: left;
+				width: 100%;
+				padding: 10px;
+				font-size: 16px;
+			}
+			.contentdivs{
+				background-color: #FFFFFF;
+				float: left;
+				width: 100%;
+			}
+			.imgdiv{
+				float:right;
+			}
+			.imgdiv img{
+				height: 18px;
+			}
+			.hlinediv{
+				float: left;
+				width: 100%;
+				border-bottom: 1px solid #EAE7EC;
+			}
+			.divCon{
+				padding-top: 13px;
+				margin-left: 10%;
+				width: 90%;
+				float: left;
+				border-bottom: 1px solid #EAE7EC;
+			}
+			.headdiv{
+			
+				height: 40px;
+				width: 40px;
+				float: left;
+				background: url(../../img/tb.png);
+				background-size: cover;
+				border-radius: 50%;
+				padding: 10px;
+				
+				
+			}
+			.headcontent{
+				float: left;
+				width: 20%;
+			}
+			.contentdiv{
+				float:left;
+				width: 80%;
+			}
+			.contentdiv p{
+				font-size: 12px;
+			}
+			.jine{
+				float: right;
+				padding-right: 30px;
+			}
+			.noborder{
+				border: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">我的账单</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div class="titlediv">
+				<span id="yearmonth">本月</span>
+				<div class="imgdiv" id="imgdiv">
+					<img src="../../img/rl.png" />
+				</div>
+			</div>
+			<div class="contentdivs">
+				
+				
+			</div>
+		</div>
+		<script type="text/javascript" src="../../js/mui.min.js" ></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script src="../../js/mui.poppicker.js"></script>
+		<script src="../../js/mui.picker.min.js"></script>
+		<script>
+			var orders;
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				},
+				preloadPages:[
+				{
+					url:"billDetails.html",
+		            id: "billDetails",
+				}]
+			});
+			mui.plusReady(function(){
+				var dates = new Date();
+				var year = dates.getFullYear();
+				var month = dates.getMonth()+1;
+				if(month<10){
+					month = "0"+month;
+				}
+				var endtime = year+"-"+month
+				setOrderHtml(endtime);
+			})
+			
+			function setOrderHtml(endtime){
+				mui.ajax({
+						
+					url: allurl+"/getOrders",
+					data:{
+							loginId:huobang_loginId,
+							orderstatus:3,
+							userrecid:loginuser["recid"],
+							pagesize:1000,
+							currpage:1,
+							endtime:endtime+"-01 00:00:00"
+						},
+					type: "post",
+					 
+					success: function(data) {
+						if(data != "wdl"){
+							
+							if(data.length > 0){
+								orders = data;
+								var addhtml = "";
+								for(var i=0;i<data.length;i++){
+									addhtml = addhtml+'<div class="hlinediv" recid="'+data[i].recid+'" index="'+i+'"><div class="divCon noborder"><div class="headcontent"><div class="headdiv"></div></div><div class="contentdiv">'+data[i].username+'-转账<div class="jine">+'+data[i].actualprice+'</div><p>'+data[i].endtime+'</p></div></div></div>'
+								}
+								$(".contentdivs").html(addhtml)
+							}else{
+								orders = null;
+								$(".contentdivs").html("<div style='text-align: center;'>暂无数据</div>")
+							}
+						}else{
+							alertLoginMsg()
+							
+						}
+					},
+					error: function(xhr, type, errorThrown) { 
+						mui.toast("网络及其他原因");
+						
+						console.log(errorThrown);
+					}
+				
+				})
+				 
+			
+		
+		
+			}
+			$(function(){
+				
+				mui(".mui-content").on("tap",".hlinediv",function(){
+					var index = $(this).attr("index");
+					var orderobj = orders[index];
+					var billDetails = plus.webview.getWebviewById("billDetails");
+					billDetails.evalJS("setDetailsHtml("+JSON.stringify(orderobj)+")")
+					mui.openWindow({
+		                id: "billDetails",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+
+				
+			});
+			
+			
+			;(function($, doc) {
+				$.init();
+				$.ready(function() {
+
+					var dates = new Date();
+					var year = dates.getFullYear();
+					var month = dates.getMonth()+1;
+					var objs = [];
+					var objone = new Object();
+						objone["text"] = year;
+						objone["value"] = year;
+					var newobjs = [];
+					for(var j=1;j<=month;j++){
+						var newobj = new Object();
+						var h = j;
+						if(j<10){
+							h = "0"+j
+						}
+						newobj["value"] = h;
+						newobj["text"] = h;
+						newobjs.push(newobj);
+					}
+					objone["children"] = newobjs;
+					objs.push(objone);
+					for(var i=year-1;i>year-10;i--){
+						var obj = new Object();
+						obj["text"] = i;
+						obj["value"] = i;
+						var newobjs = [];
+						for(var j=1;j<13;j++){
+							var newobj = new Object();
+							var h = j;
+							if(j<10){
+								h = "0"+j
+							}
+							newobj["value"] = h;
+							newobj["text"] = h;
+							newobjs.push(newobj);
+						}
+						obj["children"] = newobjs;
+						objs.push(obj);
+					}
+					var monthyear = new $.PopPicker({
+						layer: 2
+					});
+					monthyear.setData(objs);
+					var imgdiv = doc.getElementById("imgdiv");
+					imgdiv.addEventListener('tap', function(event) {
+						monthyear.show(function(items) {
+							//alert(items[0].text+"-"+items[1].text)
+							doc.getElementById("yearmonth").innerText = items[0].text+"-"+items[1].text;
+							setOrderHtml(items[0].text+"-"+items[1].text)
+						});
+					}, false);
+					
+				});
+			})(mui, document);
+		</script>
+	</body>
+</html>

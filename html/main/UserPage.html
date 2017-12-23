@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的</title>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body
+			{
+				background:rgb(238,238,238);
+				font-size: 14px;
+				
+			}
+			.usertop{
+				background: url(../../img/wd-bg.jpg);
+				width:100%;
+				height:150px;
+				background-size:cover;
+			}
+			.usercir{
+				position: relative;
+				background: url(../../img/zcym.jpg);
+				z-index: 10;
+				width: 50px;
+				height: 50px;
+				background-size:cover;
+				border-radius: 25px;
+				margin-left: 43%;
+				top: 20%;
+			}
+			.usernamediv{
+				position: relative;
+				color: white;
+				font-weight: 700;
+				text-align: center;
+				top: 23%;
+				width: 100%;
+			}
+			.toidentbutton{
+				position: relative;
+				background-color: white;
+				width: 53px;
+				text-align: center;
+				font-size: 12px;
+				height: 20px;
+				border-radius: 5px;
+				color: rgb(255,114,0);
+				margin-left: 43%;
+				top: 23%;
+				display: none;
+			}
+			.hlinediv{
+				height: 50px;
+				width: 100%;
+				float: left;
+				line-height: 50px;
+				background-color: #FFFFFF;
+			}
+			.picdiv{
+				width: 15%;
+				float: left;
+				height: 100%;
+				text-align: right;
+			}
+			.textdiv{
+				width: 85%;
+				float: left;
+				height: 100%;
+				border-bottom:1px solid #EAE7EC;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.picimg{
+				width:25px;
+				margin-top: 10px;
+			}
+			.textdivs{
+				width: 85%;
+				float: left;
+				height: 100%;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.setup{
+				margin-top:10px ;
+				border-top: 1.5px #EAE7EC solid;
+				border-bottom: 1px #DCDCDC solid;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div class="contentdiv">
+			<div class="usertop"> 
+				<div class="usercir">
+					
+				</div>
+				<div class="usernamediv">
+					未认证用户
+				</div>
+				<div class="toidentbutton">
+					立即登录
+				</div>
+			</div>
+			<!--<div class="hlinediv mywallet">
+				<div class="picdiv">
+					<img src="../../img/qb@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					我的钱包
+				</div>
+			</div>-->
+			<div class="hlinediv mybill">
+				<div class="picdiv">
+					<img src="../../img/zd.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					我的账单
+				</div>
+			</div>
+			<div class="hlinediv mywallet">
+				<div class="picdiv">
+					<img src="../../img/qb@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					我的钱包
+				</div>
+			</div>
+			
+			<div class="hlinediv CustomerCenter">
+				<div class="picdiv">
+					<img src="../../img/kefu@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					客服中心
+				</div>
+			</div>
+			<div class="hlinediv pushInfo">
+				<div class="picdiv">
+					<img src="../../img/tuisong@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					推送
+				</div>
+			</div>
+			<div class="hlinediv logoutXitong">
+				<div class="picdiv">
+					<img src="../../img/tc.png" class="picimg"/>
+				</div>
+				<div class="textdiv" style="border-bottom:0px;">
+					退出登录
+				</div>
+			</div>
+			<div class="hlinediv setup">
+				<div class="picdiv">
+					<img src="../../img/shezhi@2x.png" class="picimg"/>
+				</div>
+				<div class="textdivs">
+					常用设置
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				}
+
+			});
+			mui.plusReady(function() {
+				pullInitHtml();
+			});
+			function pullInitHtml(){
+				if(loginuser["uname"] != null && loginuser["uname"] != ""){
+					if(loginuser["loginname"] != xitongneizhi){
+						$(".usernamediv").text(loginuser["loginname"]);
+					}else{
+						$(".usernamediv").text(loginuser["uname"]);
+					}
+					
+				}else{
+					$(".usernamediv").text(loginuser["loginname"]);
+				}
+				if(loginuser["headimg"]!= null && loginuser["headimg"].indexOf(".jpg") != -1){
+					$(".usercir").css("background-image","url("+allurl+loginuser["headimg"]+")")
+				}
+				if(loginuser["loginname"] == xitongneizhi){
+					$(".toidentbutton").show();
+					$(".logoutXitong").hide();
+				}
+			}
+			function successImg(p){
+				compressImages(p,-1,"");
+				$(function(){
+					$(".usercir").css("background-image","url("+p+")")
+				});
+			};
+			$(function(){
+				mui(".usertop").on("tap",".usercir",function(){
+					if(loginuser["loginname"] == xitongneizhi){
+						mui.toast("请先登录！");
+						return false;
+					}
+				    plus.gallery.pick(function(path){
+				    	var btnArray = ['否', '是'];
+				    	mui.confirm('是否替换头像？', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								successImg(path);
+							} else {
+								return false;
+							}
+						})
+					 	
+				    },function(err){
+				        //plus.nativeUI.alert("Failed: "+err.message);
+				    });
+				})
+				mui(".usertop").on("tap",".toidentbutton",function(){
+					var main = plus.webview.getWebviewById("main");
+					if(main!=null){
+						main.close();
+					}
+					
+				});
+				
+				mui(".contentdiv").on("tap",".logoutXitong",function(){
+					var login = plus.webview.getWebviewById("login");
+					if(login == null){
+						localStorage.removeItem("huobang_login_user");
+						mui.openWindow(
+						{
+				            id: 'login',
+				            url: "../base/login.html",
+				            styles: {
+								popGesture: "none"
+							},
+							show: {
+								aniShow: "pop-in"
+							},
+							waiting: {
+								autoShow: false
+							}
+				        })
+					}else{
+						var main = plus.webview.getWebviewById("main");
+						if(main!=null){
+							localStorage.removeItem("huobang_login_user");
+							main.close();
+						}
+					}
+					
+					
+					
+					/*mui.openWindow({
+		                id: "login",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });*/
+				})
+				mui(".contentdiv").on("tap",".setup",function(){
+					mui.openWindow({
+		                id: "setUpIndex",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				mui(".contentdiv").on("tap",".mywallet",function(){
+					mui.openWindow({
+		                id: "myWallet",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				mui(".contentdiv").on("tap",".myAchievement",function(){
+					mui.openWindow({
+		                id: "myAchievement",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".CustomerCenter",function(){
+					mui.openWindow({
+						url:"../customer/CustomerCenter.html",
+		                id: "CustomerCenter",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".mybill",function(){
+					mui.openWindow({
+						url:"../mybill/myBill.html",
+		                id: "mybill",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".pushInfo",function(){
+					mui.openWindow({
+						url:"../base/pushInfo.html",
+		                id: "pushInfo",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+			});
+			
+			function compressImages(path,index,addtext){
+				
+				var files=null;
+			 	var img = new Image();
+		        img.src = path;        // 传过来的图片路径在这里用。
+		        img.onload = function () {
+		            var that = this;
+		            //生成比例 
+		            var w = that.width,
+		                h = that.height,
+		                scale = w / h; 
+		                w = 680 || w;              //480  你想压缩到多大，改这里
+		                h = w / scale;
+		
+		            //生成canvas
+		            var canvas = document.createElement('canvas');
+		
+		            var ctx = canvas.getContext('2d');
+		
+		            $(canvas).attr({width : w, height : h});
+		
+		            ctx.drawImage(that, 0, 0, w, h);
+		
+		            var base64 = canvas.toDataURL('image/jpg', 1);   //1最清晰，越低越模糊。弹出 base64 开头的一段 data：image/png;却是png。
+		//              alert(base64);      
+		
+		           	files =base64;   // 把base64数据丢过去，上传要用。
+		           	
+		           	uploadImages(files,index,addtext);
+			    }
+		        
+			        
+			
+			}
+			function uploadImages(files,index,addtext){
+				var userrecid = loginuser["recid"];
+				var datas = files.substring(22);
+				
+				mui.ajax({
+						
+					url: allurl+"/UploadImages",
+					data:{
+							loginId:huobang_loginId,
+							images:datas,
+							recid:userrecid,
+							index:index
+						},
+					type: "post",
+					 
+					success: function(data) {
+						
+						if(data == "success"){
+							mui.toast("更换成功")
+						}else if(data == "wdl"){
+							alertLoginMsg();
+							plus.nativeUI.closeWaiting();
+						}else{
+							mui.toast("网络错误")
+							plus.nativeUI.closeWaiting();
+						}
+						
+					},
+					error: function(xhr, type, errorThrown) { 
+						mui.toast("网络及其他原因");
+						
+						console.log(errorThrown);
+					}
+				
+				})
+			}
+			
+		</script>
+	</body>
+
+</html>

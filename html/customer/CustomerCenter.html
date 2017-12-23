@@ -1,0 +1,171 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：设置
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body
+			{
+				background:rgb(238,238,238);
+				font-size: 14px;
+				
+			}
+
+			.hlinediv{
+				height: 50px;
+				width: 100%;
+				float: left;
+				line-height: 50px;
+				background-color: #FFFFFF;
+			}
+			.picdiv{
+				width: 15%;
+				float: left;
+				height: 100%;
+				text-align: right;
+			}
+			.picimg{
+				width:25px;
+				margin-top: 10px;
+			}
+			.textdiv{
+				width: 85%;
+				float: left;
+				height: 100%;
+				border-bottom:1px solid #EAE7EC;
+				text-indent: 1em;
+				font-size: 16px;
+				letter-spacing: -1px;
+				color: #666;
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.kfinfo .textdiv{
+				border: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">客服中心</h1>
+				
+		</header>
+		<div class="contentdiv mui-content">
+			
+			<div class="hlinediv orderproblem">
+				<div class="picdiv">
+					<img src="../../img/dwwt@2x.png" class="picimg"/>
+				</div>
+				<div class="textdiv">
+					订单问题
+				</div>
+			</div>
+			<div class="hlinediv feedback">
+				<div class="picdiv">
+					<img src="../../img/yjfk@2x.png" class="picimg"/>
+				</div> 
+				<div class="textdiv">
+					意见反馈
+				</div>
+			</div>
+			<div class="hlinediv kfinfo">
+				<div class="picdiv">
+					<img src="../../img/kefu@2x.png" class="picimg"/>
+				</div> 
+				<div class="textdiv">
+					在线客服
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				},
+				preloadPages:[
+				{
+					url:"feedback.html",
+		            id: "feedback",
+				},{
+					url:"orderProblem.html",
+		            id: "orderProblem",
+				},{
+					url:"showKefu.html",
+		            id: "showKefu", 
+				}]
+			});
+			mui.plusReady(function() {});
+
+			$(function(){
+				
+				mui(".contentdiv").on("tap",".feedback",function(){
+					mui.openWindow({
+		                id: "feedback",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".orderproblem",function(){
+					mui.openWindow({
+		                id: "orderProblem",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				mui(".contentdiv").on("tap",".kfinfo",function(){
+					mui.openWindow({
+		                id: "showKefu",
+						styles: {
+							popGesture: "none"
+						},
+						show: {
+							aniShow: "pop-in"
+						},
+						waiting: {
+							autoShow: false
+						}
+				    });
+				})
+				
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

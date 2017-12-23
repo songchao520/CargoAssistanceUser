@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.headlunbo{
+				width: 100%;
+				position: fixed;
+				left: 0px;
+			}
+			.dianj{
+				text-align: center;
+				background-color: white;
+				height: 40px;
+				line-height: 40px;
+				position: fixed;
+				width: 100%;
+				z-index: 99;
+				border-bottom: 1px solid #EAE7EC;
+				;
+			}
+			.textorange{
+				color: #FF7200;
+			}
+			.displaynone{
+				display: none;
+			}
+			.viewdetails{
+				float: left;
+				width: 100%;
+				background-color: #FFFFFF;
+				border-bottom: 1px solid #EAE7EC;
+			}
+			.detailsleft{
+				float: left;
+				width: 40%;
+				padding: 10px;
+			}
+			.detailsright{
+				float: left;
+				width: 60%;
+			}
+			.leftoneimg{
+				width: 90px;
+				
+				height: 90px;
+				
+			}
+
+			.rightone{
+				font-size: 16px;
+				margin-top: 10px;
+				height: 60px;
+			}
+			.rightthere{
+				margin-top: 10px;
+			}
+			.mui-slider-item a img{
+				width: 100%;
+				height: 150px;
+			}
+			.contentshow{
+				margin-top: 190px
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+			<h1 class="mui-title" style="color: #FFFFFF;">图文</h1>
+			
+			
+		</header>
+		<div class="mui-content">
+			<div class="headlunbo">
+				<div id="slider" class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../../img/banner.jpg"  id="imagetextzeroshow">
+								<!-- <p class="mui-slider-title">货帮-足不出户，徒行万里</p>-->
+							</a> 
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../../img/banner.jpg" id="imagetextoneshow">
+								<!-- <p class="mui-slider-title" >货帮-货载天下</p>-->
+							</a> 
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../../img/banner.jpg" id="imagetexttwoshow">
+								<!-- <p class="mui-slider-title">货帮-动起你的货车</p>-->
+							</a>
+						</div>
+						<div class="mui-slider-item">
+							<a href="#">
+								<img src="../../img/banner.jpg" id="imagetextthreeshow">
+								<!-- <p class="mui-slider-title">货帮-足不出户，徒行万里</p>-->
+							</a>
+						</div>
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="#">
+								<img src="../../img/banner.jpg"  id="imagetextfourshow">
+								<!-- <p class="mui-slider-title">货帮-货载天下</p>-->
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator mui-text-right">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+			
+				<div class="dianj mui-row">
+					<div class="shangq mui-col-xs-6 clicktap textorange" toshow=".shangqdiv" >
+						<div id="showtextone">商圈</div>
+						
+					</div>
+					<div class="biaoqian mui-col-xs-6 clicktap"  toshow=".biaoqiandiv">
+						<div style="margin-top:5px;height:30px;width: 1px;background-color: #EAE7EC;float: left;">
+							&nbsp;
+						</div>
+						<div id="showtexttwo">标签二</div>
+					</div>
+				</div> 
+			</div>
+			<div  class="contentshow shangqdiv">
+				
+			</div>
+			<div  class="contentshow biaoqiandiv displaynone">
+				
+				
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function() {
+				setImageTextTQ();
+				setImageTextHtmlSQ();
+				setImageTextHtmlBQ();
+			});
+			function setImageTextTQ(){
+				$.post(allurl+"/getImageTexts",{loginId:huobang_loginId},function(data){
+					if(data != "wdl"){
+						if(data.length != 0){ 
+						//$("#imgsrcshow").attr("src",huobang_url+data[0]["relevanting"]);
+							$("#showtextone").text(data[0].showtextone);
+							$("#showtexttwo").text(data[0].showtexttwo);
+							$("#imagetextoneshow").attr("src",allurl+data[0].showimgone +"?time="+ new Date());
+							$("#imagetexttwoshow").attr("src",allurl+data[0].showimgtwo +"?time="+ new Date());  
+							$("#imagetextthreeshow").attr("src",allurl+data[0].showimgthree +"?time="+ new Date());
+							$("#imagetextzeroshow").attr("src",allurl+data[0].showimgthree +"?time="+ new Date());
+							$("#imagetextfourshow").attr("src",allurl+data[0].showimgone +"?time="+ new Date());
+						   // form.render();
+						 }
+				 		
+					}else{
+						alertLoginMsg()
+						
+					}
+					
+				})
+			}
+			//获取商圈图文信息
+			function setImageTextHtmlSQ(){
+				//图文
+				$.post(allurl+"/getNotices",{loginId:huobang_loginId,source:5},function(data){
+					if(data != "wdl"){
+						if(data.length != 0){
+							var addhtml = "";
+							for(var i=0;i<data.length;i++){		
+
+								addhtml = addhtml + '<div class="viewdetails" recid="'+data[i].recid+'"><div class="detailsleft"><div class="leftone"><div class="leftoneimg" style="background: url('+allurl+data[i].relevanting+');background-size:cover;"></div></div></div><div class="detailsright"><div class="rightone">'+data[i].title+'<p>'+data[i].author+'</p></div><div class="rightthere">'+data[i].createtime+'</div></div></div>'
+							}
+							$(".shangqdiv").html(addhtml);
+							//console.log(JSON.stringify(data)); 
+						}
+						
+					}else{
+						alertLoginMsg()
+					}
+				})
+			}
+			//获取标签二
+			function setImageTextHtmlBQ(){   
+				//图文
+				$.post(allurl+"/getNotices",{loginId:huobang_loginId,source:6},function(data){
+					if(data != "wdl"){
+						if(data.length != 0){
+							var addhtml = "";
+							for(var i=0;i<data.length;i++){		
+
+								addhtml = addhtml + '<div class="viewdetails" recid="'+data[i].recid+'"><div class="detailsleft"><div class="leftone"><div class="leftoneimg" style="background: url('+allurl+data[i].relevanting+');background-size:cover;"></div></div></div><div class="detailsright"><div class="rightone">'+data[i].title+'<p>'+data[i].author+'</p></div><div class="rightthere">'+data[i].createtime+'</div></div></div>'
+							}
+							$(".biaoqiandiv").html(addhtml);
+							//console.log(JSON.stringify(data)); 
+						}
+						
+					}else{
+						alertLoginMsg()
+					}
+				})
+			}
+			window.addEventListener('refreshLunB',function(event){
+			  //获得事件参数; 
+			  
+			  activeSlider();
+			});
+			$(function(){
+				 
+				
+				mui(".dianj").on("tap",".clicktap",function(){
+					$(".clicktap").removeClass("textorange")
+					$(this).addClass("textorange")
+					var toshow = $(this).attr("toshow");
+					$(".contentshow").hide();
+					$(toshow).show();
+				})
+				mui(".mui-content").on("tap",".viewdetails",function(){
+					var recid = $(this).attr("recid");
+					$.post(allurl+"/getNotices",{loginId:huobang_loginId,recid:recid},function(data){
+						if(data != "wdl"){
+							if(data.length != 0){  
+								mui.openWindow({
+									url:"../imagetext/graphicdetails.html",
+					                id: "graphicdetails",
+									styles: {
+										popGesture: "none"
+									},
+									show: {
+										aniShow: "pop-in"
+									},
+									waiting: {
+										autoShow: false
+									},
+									extras:{ 
+										notice:JSON.stringify(data[0])
+									}
+							    });
+							}else{
+								mui.toast("发生未知错误！");
+							}
+							
+						}else{
+							alertLoginMsg()
+						}
+					})
+					
+				})
+			})
+			
+			var flag = true;
+			function activeSlider(){
+				if(!flag){
+					return false;
+				} 
+				var slider = mui("#slider");
+				slider.slider({
+					interval: 2000
+				}) 
+				flag = false;
+			}
+		</script>
+	</body>
+
+</html>

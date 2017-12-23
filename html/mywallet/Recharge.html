@@ -1,0 +1,336 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：设置
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>我的</title>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body
+			{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+				
+			}
+
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.withdrawals{
+				margin-top: 10px
+			}
+			.balance{
+				float: left;
+				width: 96%;
+				margin-left: 2%;
+				background-color: #FFFFFF;
+				border: 1px solid #CCCCCC;
+				margin-top: 5px;
+				
+			}
+			.minimum{
+				float: left;
+				width: 100%;
+				text-align: center;
+				padding-top: 10px;
+				color: #999;
+			}
+			.titlediv{
+				height: 80px;
+				line-height: 80px;
+				font-size: 14px;
+				float: left;
+				width: 80%;
+				margin-left: 10%;
+				margin-right: 10%;
+				color: #FF7200;
+			}
+			.jiagediv{
+				height: 30px;
+				font-size: 18px;
+				font-weight: 400;
+				float: left;
+				width: 80%;
+				margin-left: 10%;
+				margin-right: 10%;
+				border-bottom: 1px solid #CCCCCC;
+				line-height: 30px;
+			}
+			.divjiage{
+				float: left;
+				width: 10%;
+				border: 0px;
+			}
+			.jiagediv input{
+				float: left;
+				height: 29px;
+				width: 90%;
+				border: 0px;
+			}
+			.textdiv{
+				width: 80%;
+				margin-left: 10%;
+				margin-right: 10%;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				color: #CCCCCC;
+				float: left;
+			}
+			.buttondiv{
+				width: 100%;
+				height: 60px;
+				margin: 10% auto;
+				margin-top: 50px;
+				float: left;
+			}
+			.buttonwebs{
+				width: 90%;
+				margin-left: 5%;
+				height: 49px;
+				background-color: rgb(255,144,0);
+				color: #FFFFFF;
+				font-size: 18px;
+				letter-spacing: 5px;
+				border: solid 0px rgb(168,230,254);
+				border-radius: 5px;
+				line-height: 40px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">充值</h1>
+				
+		</header>
+		<div class="contentdiv mui-content">
+			<div class="balance">
+				<div class="titlediv">
+					要充值金额：
+				</div>
+				<div class="jiagediv">
+					<div class="divjiage">￥</div><input type="text" id="chongzhijine" />
+				</div>
+				<div class="textdiv">
+					你当前可用金额为<span id="jiagspan">0.00</span>元
+				</div>
+			</div>
+			<div class="minimum">
+				
+			</div>
+			<div class="buttondiv">
+				<button class="buttonwebs">立即充值</button>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../../js/layer_mobile/layer.js" ></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: false,
+				statusBarBackground: '#f7f7f7',
+				gestureConfig: {  
+					doubletap: true
+				}
+			});
+			var alipay;
+			mui.plusReady(function() {
+				plus.payment.getChannels(function(channels){
+					for(var i in channels){
+						var channel=channels[i];
+						if(channel.id=='alipay'||channel.id=='alipay'){	// 过滤掉不支持的支付通道：暂不支持360相关支付
+							alipay = channel;
+						}
+	
+						checkServices(alipay);
+					}
+				},function(e){
+					outLine('获取支付通道失败：'+e.message);
+				});
+			});
+			function setJiage(jiag){
+				$("#jiagspan").text(jiag.toFixed(2));
+			}
+
+			$(function(){
+				
+				mui(".buttondiv").on("tap",".buttonwebs",function(){
+					var chongzhijine = $("#chongzhijine").val();
+					if(chongzhijine!=""){
+						if(isNaN(chongzhijine)){
+							mui.toast("请输入正确的充值金额！")
+						}else{
+							var total = chongzhijine*1
+							UserPay("alipay",total);
+						}
+					}else{
+						mui.toast("请输入充值金额！")
+					}
+				})
+
+				
+			});
+			
+			// 检测是否安装支付服务
+function checkServices(pc){
+	if(!pc.serviceReady){
+		var txt=null;
+		switch(pc.id){
+			case 'alipay':
+			txt='检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+			break;
+			default:
+			txt='系统未安装“'+pc.description+'”服务，无法完成支付，是否立即安装？';
+			break;
+		}
+		plus.nativeUI.confirm(txt, function(e){
+			if(e.index==0){
+				pc.installService();
+			}
+		}, pc.description);
+	}
+}
+
+// 支付"alipay",rmbs,"updatePremium",recid,bargaining
+var waits=null;
+function UserPay(id,total){
+	if(waits){return;}//检查是否请求订单中
+	if(id==='appleiap'){
+		clicked('payment_iap.html');
+		return;
+	}
+	var url=huobang_alipayurl;
+	if(id=='alipay'||id=='wxpay'){
+		url+=id;
+	}else{
+		plus.nativeUI.alert('当前环境不支持此支付通道！', null, '交钱');
+		return;
+	}
+	var appid=plus.runtime.appid;
+	if(navigator.userAgent.indexOf('StreamApp')>=0){
+		appid='Stream';
+	}
+	url+='&appid='+appid+'&total=';
+	waits=plus.nativeUI.showWaiting();
+	// 请求支付订单
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		switch(xhr.readyState){
+			case 4:
+			waits.close();waits=null;
+			if(xhr.status==200){
+
+				var order=xhr.responseText;
+				plus.payment.request(alipay,order,function(result){
+					var havamoney = (total*1)+(loginuser["havamoney"]*1)
+					mui.ajax({
+		
+						url: allurl+"/updateUser",
+						data:{
+								loginId:huobang_loginId,
+								recid:loginuser["recid"],
+								havamoney:havamoney
+
+							},
+						type: "post",
+						 
+						success: function(data) {
+							if(data == "wdl"){
+								alertLoginMsg()
+							}else if(data.toString() == "success"){
+								mui.toast("充值成功");
+								loginuser["havamoney"] = havamoney; 
+								localStorage.setItem("huobang_login_user",JSON.stringify(loginuser));
+								var myWallet = plus.webview.getWebviewById('myWallet');
+								myWallet.evalJS('setJiage('+havamoney+')')
+								successChaRu(total)
+								mui.back();
+							}
+						},
+						error: function(xhr, type, errorThrown) { 
+							alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+							
+							console.log(errorThrown);
+						}
+					
+					})
+				},function(e){
+					//updateOrder(thisid,recid,index,jqobj);
+					plus.nativeUI.alert('取消订单或网络问题', null, '支付失败');
+				});
+			}else{
+				plus.nativeUI.alert('获取订单信息失败！', null, '支付');
+			}
+			break;
+			default:
+			break;
+		}
+	}
+	xhr.open('GET',url+total);
+	xhr.send();
+}
+//补价插入消费流水表
+function successChaRu(total){
+	
+		mui.ajax({
+	
+			url: allurl+"/saveUserFlow",
+			data:{
+					loginId:huobang_loginId,
+					userrecid:loginuser["recid"],
+					consumptionamount:total,
+					createtime:formatTime(new Date()),
+					istype:5
+					
+				},
+			type: "post",
+			 
+			success: function(data) {
+				if(data == "wdl"){
+					alertLoginMsg()
+				}else if(data.toString() != ""){
+					//console.log(data);
+					
+					//back();
+				}
+			},
+			error: function(xhr, type, errorThrown) { 
+				mui.toast("支付成功,因为其他错误未通知到司机")
+				
+				console.log(errorThrown);
+			}
+		
+		})
+		
+	
+}
+		//格式化时间
+function formatTime(_time){
+    var year = _time.getFullYear();
+    var month = _time.getMonth()+1<10 ? "0"+(_time.getMonth()+1) : _time.getMonth()+1;
+    var day = _time.getDate()<10 ? "0"+_time.getDate() : _time.getDate();
+    var hour = _time.getHours()<10 ? "0"+_time.getHours() : _time.getHours();
+    var minute = _time.getMinutes()<10 ? "0"+_time.getMinutes() : _time.getMinutes();
+    var miao = _time.getSeconds()<10 ? "0"+_time.getSeconds() : _time.getSeconds();
+    return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+miao;
+}
+			
+		</script>
+	</body>
+
+</html>

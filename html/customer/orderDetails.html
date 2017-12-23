@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			.viewdetails{
+				float: left;
+				width: 95%;
+				margin-left: 2.5%;
+				background-color: #FFFFFF;
+				margin-top: 2%;
+			}
+			.detailsleft{
+				float: left;
+				width: 40%;
+			}
+			.detailsright{
+				float: left;
+				width: 60%;
+				padding-left: 10px;
+			}
+			.leftoneimg{
+				width: 80px;
+				border-radius: 50%;
+				background: url(../../img/dlym.jpg);
+				height: 80px;
+				background-size:cover;
+			}
+			.lefttwo{
+				margin-top: 5px;
+				font-size: 12px;
+				
+			}
+			.leftthere{
+				margin-top: 5px;
+				font-size: 7px;
+			}
+			.leftthere span{
+				color: #FF7200;
+			}
+			.detailsright div{
+				height: 40px;
+				line-height: 40px;
+			}
+			.rmbspan{
+				color:#FF7200;
+				font-weight: 500;
+			}
+			.phonespan{
+				color: #FF7200;
+			}
+			.jiage{
+				color: #FF7200;
+				text-align: center;
+				padding-top: 60px;
+				font-size: 18px;
+				font-weight: 500;
+				border-left: 1px solid #CCCCCC;
+				height: 100%;
+				padding-bottom: 80px;
+			}
+			.detailsright .mui-icon{
+				color: #FF7200;
+			}
+			.detailsright div{
+				padding-left: 10px;
+			}
+			.viewtwo{
+				padding-top:10px ;
+			}
+			.viewtwo .detailsright div{
+				font-size: 10px;
+			}
+			.buttondiv{
+				width: 100%;
+				height: 60px;
+				margin: 10% auto;
+				margin-top: 50px;
+			}
+			.buttonwebs{
+				width: 96%;
+				margin-left: 2%;
+				height: 50px;
+				background-color: rgb(255,144,0);
+				color: #FFFFFF;
+				font-size: 18px;
+				letter-spacing: 5px;
+				border: solid 0px rgb(168,230,254);
+				border-radius: 5px;
+				line-height: 41px;
+				margin-top: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">订单详情</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div class="viewdetails">
+				
+				<div class="detailsright">
+					<div class="rightzero">
+						<span class="mui-icon mui-icon-location"></span><span id="startingplace"></span>
+					</div>
+					<div class="rightone">
+						<span class="mui-icon mui-icon-flag"></span><span id="endplace"></span>
+						
+					</div>
+					<div class="righttwo">
+						<span class="mui-icon mui-icon-arrowthinright"></span><span id="goods"></span>
+					</div>
+					<div class="rightthere">
+						<span class="mui-icon mui-icon-phone phonespan"></span><span id="driverphone"></span>
+					</div>
+				</div>
+				
+				<div class="detailsleft">
+					<div class="leftone">
+						<div class="leftoneimg">
+							
+						</div>
+					</div>
+					<div class="lefttwo">
+						<span id="username">王某某</span>（货主）
+					</div>
+					<div class="leftthere">
+						<span>已认证发布60条</span> 88人次查看
+						
+					</div>
+				</div>
+			</div>
+			<div class="viewdetails viewtwo">
+				
+				<div class="detailsright">
+					<span>详细信息：</span>
+					<div class="rightzero">
+						计划运输时间：<span id="appointmenttime"></span>
+					</div>
+					<div class="rightone">
+						货物名称：<span id="goodsname"></span>
+					</div>
+					<div class="righttwo">
+						货物数量：<span id="goodsnumber"></span>
+					</div>
+					<div class="rightthere">
+						货物描述：<span id="remarks"></span>
+					</div>
+				</div>
+				
+				<div class="detailsleft">
+					<div class="leftone jiage">
+						
+						￥<span id="bargainings"></span>元
+						
+					</div>
+				</div>
+			</div>
+			
+
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			var orderrecid;
+			mui.init()
+			mui.plusReady(function(){
+				var orderDetails = plus.webview.getWebviewById("orderDetails");
+				var obj = orderDetails.orderDetail;
+				setOrderHtml(JSON.parse(obj));
+			})
+			function setOrderHtml(data){
+				
+				for(var i in data){
+					if(data[i].length>8){
+						$("#"+i).attr(i,data[i]);
+						$("#"+i).addClass("showSLH");
+						if(i.indexOf("appointmenttime")==-1 && i.indexOf("driverphone")==-1){
+							data[i] = data[i].substring(0,8)+"...";
+						} 
+						
+					}
+					$("#"+i).text(data[i]);
+				}
+				orderrecid = data["recid"];
+				$("#bargainings").text(data["bargaining"].toFixed(2));
+				$("#goods").text(data["goodsname"]+"/"+data["goodsnumber"]);
+			}
+			$(function(){
+				mui(".mui-content").on("tap",".showSLH",function(){
+					var texts = $(this).attr($(this).attr("id"));
+					mui.alert(texts, '全名', function() {
+						
+					});
+				});
+				
+			})
+		</script>
+	</body>
+
+</html>

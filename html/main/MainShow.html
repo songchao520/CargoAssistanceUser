@@ -1,0 +1,1300 @@
+<!--
+	作者：369126371@qq.com
+	时间：2016-11-04
+	描述：首页
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link rel="stylesheet" href="../../css/mui.min.css" />
+		<link href="../../css/mui.picker.min.css" rel="stylesheet" />
+		<link href="../../css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../../iconfont/iconfont.css" />
+		<style>
+			body{
+				
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+			}
+			.headcount{
+				background-color:white
+			}
+			.diplaynone{
+				display:none;
+			}
+			.headimg{
+				margin-top:3px;
+				margin-left:37%;
+			}
+			.mui-content{
+				background:none;
+				overflow: hidden;
+				
+			}
+
+			.mui-slider{
+				background-color: white;
+			}
+			.mui-control-content{
+				min-height:200px;
+				text-align: center;
+			}
+			.showTruckImg{
+				height: 100px;
+				text-align: center;
+				width: 60%!important;
+			
+				margin-top: 5%;	
+			}
+			.imghr{
+				background-color: #CCCCCC;
+				width: 80%;
+				margin-left: 10%;
+				
+			}
+			.orderdiv,.remarks,.htmltop{
+				float: left;
+				width: 90%;
+				margin-left: 5%;
+				background-color: #FFFFFF;
+				border: 1px solid rgb(220,220,220);
+				
+				font-size: 16px;
+			}
+			.remarks,.htmltop{
+				margin-top: 10px;
+				width: 100%;
+				margin-left: 0%;
+				padding-bottom: 10px;
+				margin-top: 0px;
+				border-bottom: 0px;
+			}	
+			.htmltop{
+				padding-bottom: 0px;
+				
+				
+			}		
+			.hlinediv{
+				float: left;
+				width: 100%;
+				height: 50px;
+				line-height: 50px;
+			}
+			.leftpic{
+				float: left; 
+				height: 100%;
+				width: 10%;
+				text-align: center;
+			}
+			.leftpic .mui-icon{
+				font-size: 18px;
+				font-weight: 700;
+				
+			}
+			.topdiv .leftpic{
+				
+				color: orangered;
+			}
+			.rightpic{
+				float: left;
+				height: 100%;
+				width: 30%;
+				text-align: right;
+				color: #999;
+			}
+			.picspan{
+				float: right;
+				padding-top: 2px;
+			}
+			.textdiv{
+				color: #666;
+				float: left;
+				height: 100%;
+				width: 60%;
+			}
+			.middledivtop{
+				float: left;
+				width: 100%;
+				height: 16px;
+				
+			}
+			.middledivtoppic{
+				float: left;
+				width: 10%;
+				color: #CCCCCC;
+				text-align: center;
+			}
+			.middledivtoppic .mui-icon{
+				font-size: 18px;
+				font-weight: 700;
+			}
+			.middledivtoptext{
+				float: left;
+				width: 90%;
+				
+			}
+			.middledivtext{
+				float: left;
+				width: 90%;
+				margin-top: 0px;
+				height: 20px;
+				margin-left: 10%;
+				font-size: 14px;
+				color: #CCCCCC;
+			}
+			.middledivtext .picspan{
+				margin-top: -13px;
+			}
+			.footdiv .middledivtop .middledivtoppic{
+				color: #008000;
+			}
+			.textdiv{
+				color: #CCCCCC;
+			}
+			.isbeizhu{
+				float: left;
+				height:100px;
+				width: 100%;
+				text-align: center;
+				font-size: 14px;
+				background-color: white;
+				margin-top: 5px;
+			}
+			.isbeizhu .mui-row{
+				width: 70%;
+				margin-left: 15%;
+			}
+			.buttonbeiz{
+				margin-top: 15px;
+				line-height: 30px;
+				
+			}
+			.buttonbeizActive{
+				color: #FF7200;
+				border: 1px solid #FF7200;
+				border-radius: 10px;
+				height: 30px;
+				width: 90%;
+			}
+			.divtitle{
+				width: 90%;
+				margin-left: 5%;
+				border-left: 3px #FF7200 solid;
+				float: left;
+				height: 15px;
+				margin-top: 13px;
+				margin-bottom: 13px;
+				text-indent: 0.5em;
+				color: #323232;
+				font-size: 14px;
+				line-height: 18px;
+				text-align: left; 
+			}
+
+			.imgdiv{
+				text-align: center;
+				font-size: 13px;
+				padding-top: 10px;
+				width: 90%;
+				margin-left: 5%;
+				
+			}
+
+			.imgdiv div img{
+				height: 30px;
+				
+			}
+			.vline{
+				width: 100%;
+				background-color: #D0D0D0;
+				border: 0px;
+				height: 1px;
+			}
+			.truckshow{
+				width: 90%;
+				margin-left: 5%;
+				font-size: 13px;
+				text-align: center;
+				border-top: 1px solid #CCCCCC;
+				margin-top: 15px;
+				padding-top:10px ;
+				display: none;
+			}
+			.truckname{
+				line-height:35px;
+				font-size: 16px;
+				color: #FF7200;
+				font-weight: 700;
+			}
+			.ycfs{
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				float: left;
+				color: white;
+				text-align: center;
+				font-size: 16px;
+			}
+			.jjyc{
+				float:left;
+				width: 60%;
+				background-color: #FF7200;
+			}
+			.yyyc{
+				float:left;
+				width: 100%;
+				background-color: #FEA700;
+			}
+			.borderBottom{
+				border-bottom: 1px solid #FF7200;
+			}
+			#remarkspan{
+				display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			}
+			#startplaceshow,#endplaceshow{
+				font-size: 14px;
+				display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			}
+			.layui-m-anim-scale h3{
+				margin-top: 0px;
+			}
+			.layui-m-layercont{
+				padding: 0px 0px!important;	
+			}
+			.hlines{
+				background-color: white;float: left;
+			}
+			.inputdivparent{
+				float: left;width: 100%;
+			}
+			.inputdivparent input:first-child{
+				width: 70%;border: 0px;border-bottom: 1px solid #CCCCCC;margin-top: 7px;height: 30px;
+			}
+			.inputdivparent input:last-child{
+				width: 70%;border: 0px;border-bottom: 1px solid #CCCCCC;margin-top: -5px;height: 30px;
+			}
+			.dialogbutton{
+				float: left;width: 80px;margin-left:18%;border-radius: 10px;background-color: #FF7200;text-align: center;height: 30px;line-height: 30px;color: white;
+				margin-bottom: 10px;
+			}
+			#canceldialog{
+				background-color: #CCCCCC;
+			}
+			.showjiag{
+				float: left;
+				margin-top: 15px;
+				width: 100%;
+				text-align: center;
+				font-size: 20px;
+			}
+			#jiagspan{
+				color: #FF7200;
+				font-size: 30px;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				
+				
+				<img src="../../img/guanyuhuobang@2x.png" class="headimg"/>
+				
+			
+		</header>
+		<div class="mui-content">
+			
+			<div class="htmltop">
+				<div class="divtitle">
+					选择车辆
+				</div>
+				<hr class="vline" />
+				<div class="mui-row imgdiv">
+					
+					
+				</div>
+				
+			</div>
+			<div class="showjiag tollstandard">
+				￥<span id="jiagspan"></span> >
+			</div>
+			<div class="divtitle">
+				定位地址和目的
+			</div>
+			<div class="orderdiv">
+				<div class="hlinediv topdiv">
+					<div class="leftpic">
+						<span class="mui-icon iconfont icon-icon010"></span>
+					</div>
+					<div class="textdiv" id="inputstartplace">
+						<span id="startplaceshow">按此输入出发地</span>
+					</div>
+					<div class="rightpic">
+						<div class="picspan">
+							<span class="mui-icon mui-icon-arrowright"></span>
+						</div>
+					</div>
+				</div>
+				<div class="hlinediv middlediv">
+					<div class="middledivtop">
+						<div class="middledivtoppic">
+							<span class="mui-icon iconfont icon-icon010"></span>
+						</div>
+						<div class="middledivtoptext" id="locationtext">正在获取定位..</div>
+					</div>
+					<div class="middledivtext" id="locationtexts">
+						正在获取定位...
+						
+					</div>
+				</div>
+				<div class="hlinediv footdiv" id="inputendplace">
+					<div class="middledivtop">
+						<div class="middledivtoppic">
+							<span class="mui-icon iconfont icon-icon010"></span>
+						</div>
+						<div class="middledivtoptext textdiv" >
+							<span id="endplaceshow">按此输入目的地</span>
+						</div>
+					</div>
+					<div class="middledivtext">
+						<div class="textdivfoot">
+							<div class="picspan">
+								<span class="mui-icon mui-icon-arrowright"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="isbeizhu">
+				<div class="divtitle">
+					其他备注
+				</div>
+				<div class="mui-row">
+					<div class="mui-col-xs-4">
+						<div class="buttonbeiz ishanding">
+							需要搬运
+						</div>
+					</div>
+					<div class="mui-col-xs-4">
+						<div class="buttonbeiz isreceipt">
+							需要回单
+						</div>
+					</div>
+					<div class="mui-col-xs-4">
+						<div class="buttonbeiz ispayment">
+							需要回款
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="remarks">
+				<div class="hlinediv footdiv">
+					<div class="middledivtop">
+						<div class="middledivtoppic">
+							<span class="mui-icon mui-icon-compose"></span>
+						</div>
+						<div class="middledivtoptext">订单备注</div>
+					</div>
+					<div class="middledivtext">
+						<span id="remarkspan">如货物类别及跟车人数</span>
+						<div class="textdivfoot">
+							<div class="picspan">
+								<span class="mui-icon mui-icon-arrowright"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="divtitle">
+				用车方式
+			</div>
+			<div class="ycfs">
+				<!--
+				<div class="jjyc">
+					<span class="mui-icon mui-icon-flag"></span>即时用车（30分钟内）
+				</div>
+				-->
+				<div class="yyyc" id="yyyc">
+					<span class="mui-icon mui-icon-paperclip"></span>预约
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	<script type="text/javascript" src="../../js/mui.min.js" ></script>
+	<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+	<script src="../../js/mui.poppicker.js"></script>
+	<script src="../../js/mui.picker.min.js"></script>
+	<script type="text/javascript" src="../../js/layer_mobile/layer.js" ></script>
+	
+	<script>
+		var currpage = 1;
+		var havePage = true;
+		mui.init({
+			swipeBack: false,
+			statusBarBackground: '#f7f7f7',
+			gestureConfig: {  
+				doubletap: true
+			}
+		});
+		
+		window.addEventListener('refreshRemarks',function(event){
+			  //获得事件参数; 
+			$(function(){
+			  	if(event.detail.textinput != ""){
+					$("#remarkspan").text(event.detail.textinput) 
+				}
+			})
+			  
+			  
+		});
+
+		
+		 //创建子页面，首个选项卡页面显示，其它均隐藏；
+		var alipay; 
+		mui.plusReady(function() { 
+			plus.payment.getChannels(function(channels){
+				for(var i in channels){
+					var channel=channels[i];
+					if(channel.id=='alipay'||channel.id=='alipay'){	// 过滤掉不支持的支付通道：暂不支持360相关支付
+						alipay = channel;
+					}
+
+					checkServices(alipay);
+				}
+			},function(e){
+				outLine('获取支付通道失败：'+e.message);
+			});
+			//设置屏幕高度
+			setOrederHeight();
+			//获取汽车类型
+			setTruckTypeHtml();
+			//获取定位信息
+			getGeocode();
+		});	
+		$(function(){
+			//点击前往收费标准
+			mui(".mui-content").on("tap",".tollstandard",function(){
+				var recid = $(".borderBottom").attr("recid");
+				var jiagspan = $("#jiagspan").text();
+				var distancespan = "0";
+				if($("#endplaceshow").attr("dsitance") != null){
+					distancespan = $("#endplaceshow").attr("dsitance");
+				}
+				
+				mui.ajax({
+					url: allurl+"/getTruckType",
+					data:{
+							loginId:huobang_loginId,
+							recid:recid
+						},
+					type: "post",
+					
+					success: function(data) {
+						
+						if(data=="wdl"){
+							alertLoginMsg()
+						}else if(data.length != 0){
+							var trucktype = JSON.stringify(data[0]);
+							mui.openWindow({
+								url:"../setup/tollstandard.html",
+				                id: "tollstandard",
+								styles: {
+									popGesture: "none"
+								},
+								show: {
+									aniShow: "pop-in"
+								},
+								waiting: {
+									autoShow: false
+								},
+								extras:{
+									trucktype:trucktype,
+									jiagspan:jiagspan,
+									distancespan:distancespan
+								}
+						    });
+							
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("网络及其他原因");
+						
+						console.log(errorThrown);
+					}
+				});
+				
+			})
+			//关闭弹窗
+			mui("body").on("tap","#canceldialog",function(){
+				layer.closeAll();
+			})
+			//关闭弹窗病保存信息系
+			mui("body").on("tap","#savedialog",function(){
+				var appointmenttime = $(this).attr("appointmenttime");
+				getOrderDetails(appointmenttime);
+			})
+			//endplaceshow
+			mui(".orderdiv").on("tap","#inputstartplace",function(){
+				var latitude,longitude;
+				if($("#startplaceshow").attr("latitude")!=null){
+					latitude = $("#startplaceshow").attr("latitude");
+					longitude = $("#startplaceshow").attr("longitude");
+					addressname = $("#startplaceshow").text();
+				}else{
+					latitude = $("#locationtexts").attr("latitude");
+					longitude = $("#locationtexts").attr("longitude");
+					addressname = $("#locationtexts").text();
+				}
+				
+				var recid = $(this).attr("id"); 
+				mui.openWindow({
+					url:"xuanzhi.html",
+	                id: "xuanzhi",
+					styles: {
+						popGesture: "none"
+					},
+					show: {
+						aniShow: "pop-in"
+					},
+					waiting: {
+						autoShow: false
+					},
+					extras:{
+						latitude:latitude,
+						longitude:longitude,
+						thismethod:recid,
+						addressname:addressname
+					}
+				});
+			})
+			mui(".orderdiv").on("tap","#inputendplace",function(){ 
+				var latitude,longitude;
+				if($("#startplaceshow").attr("latitude")!=null){
+					latitude = $("#startplaceshow").attr("latitude");
+					longitude = $("#startplaceshow").attr("longitude");
+					addressname = $("#startplaceshow").text();
+				}else{
+					latitude = $("#locationtexts").attr("latitude");
+					longitude = $("#locationtexts").attr("longitude");
+					addressname = $("#locationtexts").text();
+				}
+				
+				var recid = $(this).attr("id"); 
+				mui.openWindow({
+					url:"gaode.html",
+	                id: "gaode",
+					styles: {
+						popGesture: "none"
+					},
+					show: {
+						aniShow: "pop-in"
+					},
+					waiting: {
+						autoShow: false
+					},
+					extras:{
+						latitude:latitude,
+						longitude:longitude,
+						thismethod:recid,
+						addressname:addressname
+					}
+				});
+			});
+			//主要三个备注按钮点击
+			mui(".isbeizhu").on("tap",".buttonbeiz",function(){
+				if($(this).hasClass("buttonbeizActive")){
+					$(this).removeClass("buttonbeizActive")
+				}else{
+					$(this).addClass("buttonbeizActive")
+				}
+			})
+			//点击前往备注
+			mui(".mui-content").on("tap",".remarks",function(){
+				var innertext = $("#remarkspan").text();
+				mui.openWindow({
+					url:"../customer/orderRemarks.html",
+	                id: "orderRemarks",
+					styles: {
+						popGesture: "none"
+					},
+					show: {
+						aniShow: "pop-in"
+					},
+					waiting: {
+						autoShow: false
+					},
+					extras:{
+						innertext:innertext
+					}
+			    });
+			});
+			//点击选择汽车类型
+			mui(".mui-content").on("tap",".clickSelectType",function(){
+				var index = $(this).attr("index");
+				$(".truckshow").hide(); 
+				
+				$(".clickSelectType").removeClass("borderBottom");
+				$(this).addClass("borderBottom");
+				$(".truckshow").eq(index).show();
+				/*if($(this).hasClass("borderBottom")){
+					$(this).removeClass("borderBottom");
+				}else{
+					$(".clickSelectType").removeClass("borderBottom");
+					$(this).addClass("borderBottom");
+					$(".truckshow").eq(index).show();
+				}*/
+				
+				
+				
+			})
+			mui("body").on("tap","#zhifuqueren",function(){
+				var zhifuway = $(".openselect").find(".mui-selected").attr("id");
+				layer.closeAll();
+				if(zhifuway == "zhifubaozhifu"){
+					UserPay(userpayobj["id"],userpayobj["rmbs"],userpayobj["startPlace"],userpayobj["endPlace"],userpayobj["sysdistance"],userpayobj["jiagspan"],userpayobj["ishanding"],userpayobj["isreceipt"],userpayobj["ispayment"],userpayobj["remarks"],userpayobj["ttyperecid"],userpayobj["appointmenttime"],userpayobj["goodsname"],userpayobj["goodsnumber"],userpayobj["startPlacelongitude"],userpayobj["startPlacelatitude"],userpayobj["endPlaceLongitude"],userpayobj["endPlacelatitude"]);
+					
+				}else{
+					//Yuepay
+					Yuepay(userpayobj["id"],userpayobj["rmbs"],userpayobj["startPlace"],userpayobj["endPlace"],userpayobj["sysdistance"],userpayobj["jiagspan"],userpayobj["ishanding"],userpayobj["isreceipt"],userpayobj["ispayment"],userpayobj["remarks"],userpayobj["ttyperecid"],userpayobj["appointmenttime"],userpayobj["goodsname"],userpayobj["goodsnumber"],userpayobj["startPlacelongitude"],userpayobj["startPlacelatitude"],userpayobj["endPlaceLongitude"],userpayobj["endPlacelatitude"]);
+				}
+			})
+		});
+		function setOrederHeight(){
+			$(function(){
+				var zheight = $(window).height(); 
+				var cheight = zheight-90;
+				var ordershow = plus.webview.getWebviewById('ordershow.html');
+				ordershow.evalJS("setheight('"+cheight+"');") 
+				
+				
+				
+			})
+			
+		}
+		function setTruckTypeHtml(){
+			mui.ajax({
+				url: allurl+"/getTruckType",
+				data:{
+						loginId:huobang_loginId
+					},
+				type: "post",
+				
+				success: function(data) {
+					
+					if(data=="wdl"){
+						alertLoginMsg()
+					}else if(data.length != 0){
+						//<div class="mui-col-xs-3 "><img src="../../img/dc.png"/><div>吊车</div></div>
+						//<div class="mui-row truckshow"><div class="mui-col-xs-3 truckname"><div id="tname">大货车</div></div><div class="mui-col-xs-3"><div id="loadweight">1.8吨</div><p>载重</p></div><div class="mui-col-xs-3"><div id="changwidehigh">4.2*1.8*1.2米</div><p>长*宽*高</p></div><div class="mui-col-xs-3"><div id="loadvolume">13.6方</div><p>载货体积</p></div></div>
+						var addhtml = "";
+						var truckdhtml = "";
+						for(var i=0;i<data.length;i++){
+							addhtml = addhtml+'<div class="mui-col-xs-3 clickSelectType" index="'+i+'" recid="'+data[i].recid+'" price="'+data[i].price+'"  kilometer="'+data[i].kilometer+'" kilometerprice="'+data[i].kilometerprice+'" startingprice="'+data[i].startingprice+'"><img src="'+allurl+data[i].imgsrc+'"/><div class="truckdata" recid="'+data[i].recid+'" >'+data[i].tname+'</div></div>';
+							truckdhtml = truckdhtml+'<div class="mui-row truckshow" index="'+i+'"><div class="mui-col-xs-3 truckname"><div id="tname">'+data[i].tname+'</div></div><div class="mui-col-xs-3"><div id="loadweight">'+data[i].loadweight+'顿</div><p>载重</p></div><div class="mui-col-xs-3"><div id="changwidehigh">'+data[i].chang+'*'+data[i].wide+'*'+data[i].high+'米</div><p>长*宽*高</p></div><div class="mui-col-xs-3"><div id="loadvolume">'+data[i].loadvolume+'方</div><p>载货体积</p></div></div>';
+						}
+						$(".imgdiv").html(addhtml);
+						$(".htmltop").append(truckdhtml);
+						$(".clickSelectType").eq(0).addClass("borderBottom");
+						$(".truckshow").eq(0).show();
+						$("#jiagspan").text(data[0].startingprice);
+					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.toast("网络及其他原因");
+					
+					console.log(errorThrown);
+				}
+			});
+		}
+
+		;(function($, doc) {
+				$.init();
+				$.ready(function() {
+					
+					
+					
+					
+					var yyyc = doc.getElementById('yyyc');
+					yyyc.addEventListener('tap', function(event) {
+						var endPlace = doc.getElementById("endplaceshow").innerText;
+						if(endPlace.indexOf("按此输入目的地")!=-1){
+							mui.toast("请选择目的地！")
+							return false;
+						}
+						var objs = getNowTime();
+						var yyycPicker = new $.PopPicker({ 
+							layer: 3
+						});
+						yyycPicker.setData(objs);
+						yyycPicker.show(function(items) {
+							var appointmenttime = items[0].value+" "+items[1].value+":"+items[2].value+":00";
+							showDialog(appointmenttime);
+							//getOrderDetails(appointmenttime);
+							yyycPicker.dispose();							
+						});
+					}, false);
+					
+					
+				});
+			})(mui, document);
+			
+//格式化时间
+function formatTime(_time){
+    var year = _time.getFullYear();
+    var month = _time.getMonth()+1<10 ? "0"+(_time.getMonth()+1) : _time.getMonth()+1;
+    var day = _time.getDate()<10 ? "0"+_time.getDate() : _time.getDate();
+    return year+"-"+month+"-"+day;
+}
+//格式化时间
+function formatTimes(_time){
+    var year = _time.getFullYear();
+    var month = _time.getMonth()+1<10 ? "0"+(_time.getMonth()+1) : _time.getMonth()+1;
+    var day = _time.getDate()<10 ? "0"+_time.getDate() : _time.getDate();
+    var hour = _time.getHours()<10 ? "0"+_time.getHours() : _time.getHours();
+    var minute = _time.getMinutes()<10 ? "0"+_time.getMinutes() : _time.getMinutes();
+    var miao = _time.getSeconds()<10 ? "0"+_time.getSeconds() : _time.getSeconds(); 
+    return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+miao;
+}
+//显示弹窗
+function showDialog(appointmenttime){
+	layer.open({
+	 	shadeClose: false,
+	  	title: [
+        '请填写货物信息',
+        'background-color: #FF7200; color:#fff;font-size:20px;'
+    	]
+   	 	,content: '<div class="hlines"><div class="inputdivparent"><input type="text" id="goodsname" placeholder="请填写货物名称,不填为杂物"/><input id="goodsnumber" type="text"placeholder="请填写货物重量,不填为未知"/></div><div class="dialogbutton" id="savedialog" appointmenttime="'+appointmenttime+'">确定</div><div class="dialogbutton" id="canceldialog">取消</div></div>'
+ 	});
+}
+//获取填写的订单信息
+var userpayobj = new Object();
+function getOrderDetails(appointmenttime){
+	//获得出发地信息经纬度，如果出发地没填自动获取定位的信息，如果未定位弹出提示。
+	var goodsname = $("#goodsname").val();
+	if(goodsname == ""){
+		goodsname = "杂物"
+	}
+	var goodsnumber = $("#goodsnumber").val();
+	if(goodsnumber == ""){
+		goodsnumber = "未知"
+	}
+	var startPlace = $("#startplaceshow").text();
+	console.log(startPlace);
+	var startPlacelatitude,startPlacelongitude,endPlacelatitude,endPlaceLongitude,sysdistance;
+	if(startPlace.indexOf("按此输入出发地")!=-1){
+		startPlace =$("#locationtext").text()+$("#locationtexts").text();
+		if(startPlace.indexOf("正在定位")!=-1){
+			mui.toast("未获取到定位，请选择出发地！")
+			return false;
+		}else{
+			
+			
+			startPlacelatitude = $("#locationtexts").attr("latitude");
+			startPlacelongitude = $("#locationtexts").attr("longitude")
+		}
+		
+	}else{
+		startPlacelatitude = $("#startplaceshow").attr("latitude");
+		startPlacelongitude = $("#startplaceshow").attr("longitude")
+	}
+	//获取目的地信息及经纬度
+	var endPlace = $("#endplaceshow").text();
+	if(endPlace.indexOf("按此输入目的地")!=-1){
+		mui.toast("请选择目的地！")
+		return false;
+	}else{
+		endPlacelatitude  = $("#endplaceshow").attr("latitude");
+		endPlaceLongitude  = $("#endplaceshow").attr("longitude");
+		console.log($("#endplaceshow").attr("dsitance"))
+		sysdistance = parseFloat($("#endplaceshow").attr("dsitance")).toFixed(4);
+	}
+	//获取所需汽车类型
+	var ttyperecid = 0;
+	if($(".borderBottom")!=null && $(".borderBottom").length!=0){
+		ttyperecid = $(".borderBottom").attr("recid");
+	}
+	//是否需要搬运
+	var ishanding = 0;
+	//是否需要回单
+	var isreceipt = 0;
+	//是否需要回款
+	var ispayment = 0;
+	if($(".ishanding").hasClass("buttonbeizActive")){
+		ishanding = 1;
+	}
+	if($(".isreceipt").hasClass("buttonbeizActive")){
+		isreceipt = 1;
+	}
+	if($(".ispayment").hasClass("buttonbeizActive")){
+		ispayment = 1;
+	}
+	var remarks = $("#remarkspan").text();
+	if(remarks.indexOf("如货物类别及跟车人数")!=-1){
+		remarks = "";
+	}
+	var jiagspan = $("#jiagspan").text();
+	var btnArray = ['否', '是'];
+	mui.confirm('你是否确认预约货车？', '货帮', btnArray, function(e) {
+		if (e.index == 1) {
+			var btnArray = ['取消', '确定'];
+			mui.prompt('请输入要支付的金额(不能低于系统价格)：',jiagspan+ '元', '确认金额', btnArray, function(e) {
+				
+				if (e.index == 1) {
+					if(e.value == ""){
+						e.value = jiagspan;
+					}
+					var re = /^[0-9]+.?[0-9]*$/;
+					if (!re.test(e.value)) {
+				　　　　mui.alert("请输入数字");
+				　　　　return false;
+				　　}
+					
+					var rmbs = parseFloat(e.value);
+					
+					if(rmbs<(jiagspan)){
+						mui.alert("价格不能小于系统规定的价格");
+				　　　　return false;
+					}
+					
+					jiagspan = rmbs;
+					//UserPay("alipay",rmbs,"#scroll2",recid,3,jqobj,driverrecid,driverphone)
+					if(loginuser["havamoney"].toFixed(2)<rmbs){
+						UserPay("alipay",rmbs,startPlace,endPlace,sysdistance,jiagspan,ishanding,isreceipt,ispayment,remarks,ttyperecid,appointmenttime,goodsname,goodsnumber,startPlacelongitude,startPlacelatitude,endPlaceLongitude,endPlacelatitude);
+					}else{
+						userpayobj["id"]="alipay";
+						userpayobj["rmbs"] = rmbs;
+						userpayobj["startPlace"] = startPlace;
+						userpayobj["endPlace"] = endPlace;
+						userpayobj["sysdistance"] = sysdistance;
+						userpayobj["jiagspan"] = jiagspan;
+						userpayobj["ishanding"] = ishanding;
+						userpayobj["isreceipt"] = isreceipt;
+						userpayobj["ispayment"] = ispayment;
+						userpayobj["remarks"] = remarks;
+						userpayobj["ttyperecid"] = ttyperecid;
+						userpayobj["appointmenttime"] = appointmenttime;
+						userpayobj["goodsname"] = goodsname;
+						userpayobj["goodsnumber"] = goodsnumber;
+						userpayobj["startPlacelongitude"] = startPlacelongitude;
+						userpayobj["startPlacelatitude"] = startPlacelatitude;
+						userpayobj["endPlaceLongitude"] = endPlaceLongitude;
+						userpayobj["endPlacelatitude"] = endPlacelatitude;
+						showBottomHtml();
+					}
+					
+				} 
+			})
+			
+		} 
+	})
+	
+	
+}
+			
+// 通过定位模块获取位置信息
+function getGeocode(){
+	plus.geolocation.getCurrentPosition( geoInf, function ( e ) {
+		mui.toast( "获取定位位置信息失败："+e.message );
+	},{geocode:true}); 
+}
+function geoInf( position ) {
+	$("#locationtext").text(position.address.province+position.address.city+position.address.district);
+	$("#locationtexts").text(position.address.street+position.address.streetNum);
+
+	$("#locationtexts").attr("latitude",position.coords.latitude);//维度
+	$("#locationtexts").attr("longitude",position.coords.longitude);//经度
+	mui.ajax({
+		url: allurl+"/updateUser",
+		data:{
+				loginId:huobang_loginId,
+				lasttime:formatTimes(new Date()),
+				lastaddress:position.address.province+position.address.city+position.address.district,
+				recid:loginuser["recid"]
+			},
+		type: "post",
+		error: function(xhr, type, errorThrown) {
+			console.log(errorThrown); 
+		}
+	});
+}
+
+//地图界面更改地图地点
+function setStartPlace(inputobj){
+	//console.log(inputobj)
+	var inputobj = JSON.parse(inputobj);
+	$("#startplaceshow").text(inputobj.dizhi+inputobj.name);
+	$("#startplaceshow").attr("latitude",inputobj.latitude);
+	$("#startplaceshow").attr("longitude",inputobj.longitude)
+}
+
+//地图界面更改结束地点
+function setEndPlace(inputobj){ 
+	//console.log(inputobj)
+	var inputobj = JSON.parse(inputobj);
+	$("#startplaceshow").text(inputobj.startplaceshowtext);
+	$("#endplaceshow").text(inputobj.dizhi+inputobj.name);
+	$("#endplaceshow").attr("latitude",inputobj.latitude);
+	$("#endplaceshow").attr("longitude",inputobj.longitude);
+	$("#endplaceshow").attr("dsitance",inputobj.distance);
+	var distance = inputobj.distance
+	var borderBottom = $(".borderBottom");
+	var price = borderBottom.attr("price");
+	var kilometer = borderBottom.attr("kilometer");
+	var kilometerprice = borderBottom.attr("kilometerprice");
+	var startingprice = borderBottom.attr("startingprice");
+	var jiag = startingprice*1+kilometerprice*kilometer+price*(distance-kilometer);
+	console.log(jiag);
+	$("#jiagspan").text(jiag.toFixed(2));
+	
+}
+
+//获取当前时间并格式化弹窗
+function getNowTime(){
+	var obj = new Object();
+	var dates = new Date();
+	obj["text"] = "今天"
+	obj["value"] = formatTime(dates)
+	dates.setTime(dates.getTime()+60*60*1000*1);
+	var datess = new Date(dates)
+	var starthour = datess.getHours();
+	var startM = datess.getMinutes();
+	var chilrdrenobjs = [];
+	for(var i=starthour;i<24;i++){
+		var chilrdrenobj = new Object();
+		if(i<10){
+			chilrdrenobj["text"] = "0"+i;
+			chilrdrenobj["value"] = "0"+i;
+		}else{
+			chilrdrenobj["text"] = i;
+			chilrdrenobj["value"] = i;
+		}
+		
+		var chilrdrensobjs = [];
+		for(var j=startM;j<60;j++){
+			var chilrdrensobj = new Object();
+			if(j<10){
+				chilrdrensobj["text"] = "0"+j;
+				chilrdrensobj["value"] = "0"+j;
+			}else{
+				chilrdrensobj["text"] = j;
+				chilrdrensobj["value"] = j;
+			}
+			
+			chilrdrensobjs.push(chilrdrensobj);
+		}
+		chilrdrenobj["children"] = chilrdrensobjs;
+		chilrdrenobjs.push(chilrdrenobj);
+	}
+	obj["children"] = chilrdrenobjs;
+	var objs = [];
+	objs.push(obj);
+	
+	for(var h=1;h<7;h++){
+		var obj = new Object();
+		var dates = new Date();
+		dates.setTime(dates.getTime()+60*60*1000*24*h);
+		if(h == "1"){
+			obj["text"] = "明天";
+		}else if(h == "2"){
+			obj["text"] = "后天";
+		}else{
+			obj["text"] = formatTime(dates)
+		}
+		
+		obj["value"] = formatTime(dates)
+		
+		var chilrdrenobjs = [];
+		for(var i=0;i<24;i++){
+			var chilrdrenobj = new Object();
+			if(i<10){
+				chilrdrenobj["text"] = "0"+i;
+				chilrdrenobj["value"] = "0"+i;
+			}else{
+				chilrdrenobj["text"] = i;
+				chilrdrenobj["value"] = i;
+			}
+			var chilrdrensobjs = [];
+			for(var j=1;j<60;j++){
+				var chilrdrensobj = new Object();
+				if(j<10){
+					chilrdrensobj["text"] = "0"+j;
+					chilrdrensobj["value"] = "0"+j;
+				}else{
+					chilrdrensobj["text"] = j;
+					chilrdrensobj["value"] = j;
+				}
+				chilrdrensobjs.push(chilrdrensobj);
+			}
+			chilrdrenobj["children"] = chilrdrensobjs;
+			chilrdrenobjs.push(chilrdrenobj);
+		}
+		obj["children"] = chilrdrenobjs;
+		
+		objs.push(obj);
+		return objs;
+	}
+}
+
+
+
+// 检测是否安装支付服务
+function checkServices(pc){
+	if(!pc.serviceReady){
+		var txt=null;
+		switch(pc.id){
+			case 'alipay':
+			txt='检测到系统未安装“支付宝快捷支付服务”，无法完成支付操作，是否立即安装？';
+			break;
+			default:
+			txt='系统未安装“'+pc.description+'”服务，无法完成支付，是否立即安装？';
+			break;
+		}
+		plus.nativeUI.confirm(txt, function(e){
+			if(e.index==0){
+				pc.installService();
+			}
+		}, pc.description);
+	}
+}
+// 支付
+var waits=null;
+function UserPay(id,total,startPlace,endPlace,sysdistance,jiagspan,ishanding,isreceipt,ispayment,remarks,ttyperecid,appointmenttime,goodsname,goodsnumber,startPlacelongitude,startPlacelatitude,endPlaceLongitude,endPlacelatitude){
+	if(waits){return;}//检查是否请求订单中
+	if(id==='appleiap'){
+		clicked('payment_iap.html');
+		return;
+	}
+	var url=huobang_alipayurl;
+	if(id=='alipay'||id=='wxpay'){
+		url+=id;
+	}else{
+		plus.nativeUI.alert('当前环境不支持此支付通道！', null, '交钱');
+		return;
+	}
+	var appid=plus.runtime.appid;
+	if(navigator.userAgent.indexOf('StreamApp')>=0){
+		appid='Stream';
+	}
+	url+='&appid='+appid+'&total=';
+	waits=plus.nativeUI.showWaiting();
+	// 请求支付订单
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		switch(xhr.readyState){
+			case 4:
+			waits.close();waits=null;
+			if(xhr.status==200){
+
+				var order=xhr.responseText;
+				plus.payment.request(alipay,order,function(result){
+					
+						mui.ajax({
+							url: allurl+"/saveOrder",
+							data:{
+									loginId:huobang_loginId,
+									userrecid:loginuser["recid"],
+									orderstatus:1,
+									startingplace:startPlace,
+									endplace:endPlace,
+									sysdistance:sysdistance,
+									bargaining:jiagspan,
+									ishanding:ishanding,
+									isreceipt:isreceipt,
+									ispayment:ispayment,
+									remarks:remarks,
+									ttyperecid:ttyperecid,
+									appointmenttime:appointmenttime,
+									goodsname:goodsname,
+									goodsnumber:goodsnumber,
+									startPlacelongitude:startPlacelongitude,
+									startPlacelatitude:startPlacelatitude,
+									endPlaceLongitude:endPlaceLongitude,
+									endPlacelatitude:endPlacelatitude,
+									createtime:formatTimes(new Date()),
+									isreading:0
+								},
+							type: "post",
+							
+							success: function(data) {
+								if(data != "wdl"){
+									if(data !="error"){
+										var ordershow = plus.webview.getWebviewById('ordershow.html');
+										ordershow.evalJS("setAddOrder('#scroll0','"+1+"','"+data+"');") 	
+										successChaRu(jiagspan,data)
+														
+										mui.toast("订单提交成功！");
+										
+									}else{
+										mui.toast("未知原因失败！");
+									}
+								}else{
+									alertLoginMsg();
+								}
+								layer.closeAll();
+							},
+							error: function(xhr, type, errorThrown) {
+								mui.toast("网络及其他原因");
+								layer.closeAll();
+								console.log(errorThrown);
+							}
+						});
+						
+					
+				},function(e){
+					//updateOrder(thisid,recid,index,jqobj);
+					plus.nativeUI.alert('取消订单或网络问题', null, '支付失败');
+				});
+			}else{
+				plus.nativeUI.alert('获取订单信息失败！', null, '支付');
+			}
+			break;
+			default:
+			break;
+		}
+	}
+	xhr.open('GET',url+total);
+	xhr.send();
+}
+
+//余额支付
+function Yuepay(id,total,startPlace,endPlace,sysdistance,jiagspan,ishanding,isreceipt,ispayment,remarks,ttyperecid,appointmenttime,goodsname,goodsnumber,startPlacelongitude,startPlacelatitude,endPlaceLongitude,endPlacelatitude){
+	var havamoney = (loginuser["havamoney"]*1)-(total*1)
+	mui.ajax({
+
+		url: allurl+"/updateUser",
+		data:{
+				loginId:huobang_loginId,
+				recid:loginuser["recid"],
+				havamoney:havamoney
+
+			},
+		type: "post",
+		 
+		success: function(data) {
+			if(data == "wdl"){
+				alertLoginMsg()
+			}else if(data.toString() == "success"){
+				loginuser["havamoney"] = havamoney; 
+				localStorage.setItem("huobang_login_user",JSON.stringify(loginuser));
+				var myWallet = plus.webview.getWebviewById('myWallet');
+				myWallet.evalJS('setJiage('+havamoney+')')
+				mui.ajax({
+					url: allurl+"/saveOrder",
+					data:{
+							loginId:huobang_loginId,
+							userrecid:loginuser["recid"],
+							orderstatus:1,
+							startingplace:startPlace,
+							endplace:endPlace,
+							sysdistance:sysdistance,
+							bargaining:jiagspan,
+							ishanding:ishanding,
+							isreceipt:isreceipt,
+							ispayment:ispayment,
+							remarks:remarks,
+							ttyperecid:ttyperecid,
+							appointmenttime:appointmenttime,
+							goodsname:goodsname,
+							goodsnumber:goodsnumber,
+							startPlacelongitude:startPlacelongitude,
+							startPlacelatitude:startPlacelatitude,
+							endPlaceLongitude:endPlaceLongitude,
+							endPlacelatitude:endPlacelatitude,
+							createtime:formatTimes(new Date()),
+							isreading:0
+						},
+					type: "post",
+					
+					success: function(data) {
+						if(data != "wdl"){
+							if(data !="error"){
+								var ordershow = plus.webview.getWebviewById('ordershow.html');
+								ordershow.evalJS("setAddOrder('#scroll0','"+1+"','"+data+"');") 	
+								successChaRu(jiagspan,data)
+												
+								mui.toast("订单提交成功！");
+								
+							}else{
+								mui.toast("未知原因失败！");
+							}
+						}else{
+							alertLoginMsg();
+						}
+						layer.closeAll();
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("网络及其他原因");
+						layer.closeAll();
+						console.log(errorThrown);
+					}
+				});
+			}
+		},
+		error: function(xhr, type, errorThrown) { 
+			alert("你支付完成后，账号在其他手机登录或网络错误，请申诉此单，以免造成不必要的损失。")
+			
+			console.log(errorThrown);
+		}
+	
+	})
+}
+
+//补价插入消费流水表
+function successChaRu(total,recid){
+	
+		mui.ajax({
+	
+			url: allurl+"/saveUserFlow",
+			data:{
+					loginId:huobang_loginId,
+					userrecid:loginuser["recid"],
+					consumptionamount:total,
+					orderrecid:recid,
+					createtime:formatTimes(new Date()),
+					istype:1
+					
+				},
+			type: "post",
+			 
+			success: function(data) {
+				if(data == "wdl"){
+					alertLoginMsg()
+				}else if(data.toString() != ""){
+					//console.log(data);
+					
+					//back();
+				}
+			},
+			error: function(xhr, type, errorThrown) { 
+				mui.toast("支付成功,因为其他错误未通知到司机")
+				
+				console.log(errorThrown);
+			}
+		
+		})
+		
+	
+}
+
+function showBottomHtml(){
+	  layer.open({
+	    type: 1
+	    ,content: '<ul class="mui-table-view mui-table-view-radio openselect" ><li class="mui-table-view-cell" id="zhifubaozhifu"><a class="mui-navigate-right">支付宝</a></li><li class="mui-table-view-cell mui-selected" id="yuezhif" ><a class="mui-navigate-right">余额('+loginuser["havamoney"].toFixed(2)+')</a></li></ul><button type="button" class="mui-btn mui-btn-success mui-btn-block" id="zhifuqueren">确定</button>'
+	    ,anim: 'up'
+	    ,style: 'position:fixed; bottom:0; left:0; width: 100%; border:none;'
+	  });
+}
+			
+	</script>
+</html>

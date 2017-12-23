@@ -1,0 +1,93 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：关于货帮页面
+-->
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body{
+				background: url(../../img/hb-bg.jpg);
+				width:100%;
+				height:100%;
+				background-size:cover;
+				font-size: 14px;
+				color: #666;
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			p{
+				text-indent: 2em;
+				margin-top: 10px;
+			}
+			.mui-content{
+				background:none;
+				
+			}
+			.tubiao,.banben,.jianjie{
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			.tubiao{
+				padding-top: 10%;
+			}
+			.tubiao img{
+				width: 100px;
+			}
+			.banben{
+				color: #FF7200;
+			}
+			.jianjie{
+				padding-top: 7%;
+			}
+			.jianjietext{
+				width: 80%;
+				margin-left: 10%;
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">关于货帮</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div class="tubiao">
+				<img src="../../img/tb.png" />
+			</div>
+			<div class="banben">
+				货帮用户版本v<span id="banbentext"></span>
+			</div>
+			<div class="jianjie">
+				<div class="jianjietext">
+					货帮是一款免费的货运020软件，为客户提供，同城、即时、整车的拉货服务。
+				</div>
+			</div>
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript">
+			
+			mui.init({
+				swipeBack:true //启用右滑关闭功能
+			})
+			mui.plusReady(function() {
+				var version = plus.runtime.version;
+				document.getElementById("banbentext").innerText = version;
+			});
+		</script>
+	</body>
+
+</html>

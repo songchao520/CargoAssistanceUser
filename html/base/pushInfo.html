@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">公告栏</h1>
+				
+		</header>
+		<div class="mui-content">
+			
+			
+		</div>
+		
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				setNoticeHtml();
+			})
+			function setNoticeHtml(){
+				//版本更新
+				$.post(allurl+"/getNotices",{loginId:huobang_loginId,source:4},function(data){ 
+					if(data != "wdl"){
+						if(data.length != 0){
+							for(var i=0;i<data.length;i++){  
+								var imgurl = "../../img/wd-bg.jpg"
+								if(data[i].relevanting != null && data[i].relevanting != ""){
+									imgurl = allurl+data[i].relevanting; 
+									console.log(imgurl);
+								}
+								$(".mui-content").append('<div class="mui-card"><div class="mui-card-header mui-card-media"style="height:40vw;background-image:url('+imgurl+')"></div><div class="mui-card-content"><div class="mui-card-content-inner"><p>'+data[i].createtime+'</p><p style="color: #333;">'+data[i].content+'</p></div></div><div class="mui-card-footer"><a class="mui-card-link">参加</a><a class="mui-card-link">查看更多</a></div></div>');
+							}
+							
+						}else{
+							$(".mui-content").html("<div style='text-align: center;'>暂无数据！</div>");
+						}
+						
+					}else{
+						alertLoginMsg()
+					}
+				})
+			}
+			
+		</script>
+	</body>
+
+</html>

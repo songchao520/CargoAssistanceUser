@@ -1,0 +1,234 @@
+<!--
+	作者：369126371@qq.com
+	时间：2017-09-25
+	描述：收费标准页面
+-->
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="../../js/systemConfig.js" ></script>
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body{
+				font-size: 12px;
+				color: #999;
+			}
+			.headcount{
+				background-color:rgb(255,114,0)
+			} 
+			p{
+				text-indent: 2em;
+				margin-top: 10px;
+			}
+			.mui-content{
+				background:none;
+				
+			}
+			.jiag,.xus,.hline,.xingh,.imgdiv,.shuom,.xuqiu,.xust{
+				float: left;
+				width: 100%;
+				text-align: center;
+			}
+			.jiag{
+				
+				padding-top: 8%;
+				font-size: 25px;
+				color: #000;
+			}
+			.jiag span:nth-child(1){
+				font-size: 25px;
+				font-weight: 300;
+			}
+			.jiag span:nth-child(2){
+				font-size: 16px;
+				font-weight: 300;
+				
+			}
+			.xus{
+				padding-top: 15px;
+			}
+			.xust{
+				margin-top: -5px;
+			}
+			.hline{
+				padding-top: 20px;
+			}
+			.hline div{
+				height: 2px;
+				background-color: #CCCCCC;
+				width: 68%;
+				margin-left: 16%;
+				
+			}
+			.xingh{
+				padding-top: 20px;
+				text-align: left;
+				font-size: 16px;
+			}
+			.xingh .xinghone{
+				width: 100%;
+				text-align: center;
+			}
+			.xingh div div{
+				float: right;
+			}
+			.imgdiv{
+				padding-top: 15px;
+			}
+			.imgdiv .imgdivcon,.imgdivleft,.imgdivright{
+				float: left;
+			}
+			.imgdivcon{
+				width: 78%;
+				text-align: center;
+			}
+			.imgdivcon img{
+				height: 80px;
+			}
+			.imgdivleft,.imgdivright{
+				width: 11%;
+				height: 80px;
+				line-height: 80px;
+			}
+			.imgdivleft{				
+				text-align: right;
+				
+			}
+			.imgdivright{
+				text-align: left;
+			}
+			.imgdivleft span,.imgdivright span{
+				font-weight: 700;
+				color: #CCCCCC;
+			}
+			.titlediv,.contentdiv{
+				float: left;
+				width: 78%;
+				margin-left: 11%;
+			}
+			.titlediv{
+				background-color: #FF7200;
+				height: 30px;
+				line-height: 30px;
+				padding-left:15px ;
+				font-size: 16px;
+				color: white;
+				border-radius: 5px;
+				text-align: left;
+			}
+			.contentdiv{
+				border: 1px solid #CCCCCC;
+				border-radius: 3px;
+				padding: 10px;
+				text-align: left;
+			}
+			.xuqiu{
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			#distance{
+				font-size: 16px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headcount">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left diplaynone" style="color: white;">
+					<span style="font-size: 15px;"></span>
+				</a>
+				<h1 class="mui-title" style="color: #FFFFFF;">收费标准</h1>
+				
+		</header>
+		<div class="mui-content">
+			<div class="jiag">
+				￥<span id="jiagspan">85</span><span>(总里程<span id="distance">0</span>公里)</span>
+			</div>
+			<div class="xus">
+				若产生高速费、停车费和搬运费，请用户额外支付
+				
+			</div>
+			<div class="xust">
+				若涉及逾时等候费，请与司机按收费标准结算
+			</div>
+			<div class="hline">
+				<div>
+					
+				</div>
+			</div>
+			<div class="xingh">
+				<div class="xinghone">
+					起步价（<span id="truckname"></span>）￥<span id="qibuj"></span>
+				</div>
+				
+				
+			</div>
+			<div class="imgdiv">
+				<div class="imgdivleft">
+				
+				</div>
+				<div class="imgdivcon">
+					<img src="../../img/guanyuhuobang@2x.png" />
+				</div>
+				<div class="imgdivright">
+					
+				</div>
+			</div>
+			<div class="shuom">
+				<div class="titlediv">
+					费用说明
+				</div>
+				<div class="contentdiv">
+					<span id="kilometer"></span>公里内价格为<span id="kilometerprice"></span>,超出后按每公里<span id="price"></span>进行计算。上货、卸货费用请于司机商议。高速及停车场等费用，根据实际产生的金额由客户支付。
+				</div>
+			</div>
+			<!--
+            	
+           
+			<div class="xuqiu">
+				<div class="titlediv">
+					额外需求
+				</div>
+				<div class="contentdiv">
+					搬运：司机另议 <br />
+					搬运：司机另议 <br />
+					搬运：司机另议 <br />
+					搬运：司机另议 <br />
+					搬运：司机另议 <br />
+				</div>
+			</div>
+			 -->
+			
+			
+			
+		</div>
+		<script src="../../js/mui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				setTollsHtml();
+			})
+			function setTollsHtml(){
+				var tollstandard = plus.webview.getWebviewById('tollstandard');
+				var trucktype =JSON.parse(tollstandard.trucktype);
+				var jiagspan = tollstandard.jiagspan;
+				var distancespan = tollstandard.distancespan;
+				//console.log(JSON.stringify(trucktype))
+				$("#qibuj").text(trucktype.startingprice);
+				$(".imgdivcon").children("img")[0].src = allurl+trucktype.imgsrc;
+				$("#truckname").text(trucktype.tname);
+				$("#price").text(trucktype.price);
+				$("#kilometer").text(trucktype.kilometer);
+				$("#kilometerprice").text(trucktype.kilometerprice);
+				$("#jiagspan").text(jiagspan);
+				$("#distance").text(distancespan);
+			}
+		</script>
+	</body>
+
+</html>
